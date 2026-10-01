@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO } from './config';
-import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, useRoute, hrefTo } from './ui';
+import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Marquee, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
@@ -273,14 +273,14 @@ function Resultados() {
             tempo — o que não muda é o cuidado com o processo.
           </p>
         </div>
-        <div className="dep-scroll res-scroll" role="list">
+        <Marquee duration="65s" className="res-marquee" label="Resultados de alunas">
           {resultados.map((r) => (
             <figure className={`res-card${r.story ? ' res-card-story' : ''}`} role="listitem" key={r.cap}>
               <img src={r.img} alt={r.alt} loading="lazy" decoding="async" />
               <figcaption>{r.cap}</figcaption>
             </figure>
           ))}
-        </div>
+        </Marquee>
         <div className="stats">
           {relatos.map((r) => (
             <div className="stat" key={r.n}>
@@ -311,7 +311,7 @@ function Depoimentos() {
           <h2>Elas chegaram com a mesma dúvida que você.</h2>
           <p className="lead">Mensagens reais das alunas — sem edição de texto.</p>
         </div>
-        <div className="dep-scroll" role="list">
+        <Marquee duration="75s" label="Depoimentos de alunas">
           {deps.map((d, i) => (
             <figure className="dep-card" role="listitem" key={i}>
               <span className="dep-stars" aria-hidden="true">
@@ -325,7 +325,7 @@ function Depoimentos() {
               <figcaption>Aluna do acompanhamento</figcaption>
             </figure>
           ))}
-        </div>
+        </Marquee>
         <p className="dep-note">
           Nomes e fotos das alunas são publicados apenas com autorização de cada uma. As citações
           acima são transcrições de mensagens reais recebidas pela Rita.

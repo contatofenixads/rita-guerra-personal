@@ -1,5 +1,5 @@
 import { VERAO, WHATSAPP_URL_VERAO, INSTAGRAM_URL } from './config';
-import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, hrefTo } from './ui';
+import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Marquee, hrefTo } from './ui';
 
 /* ============================================================
    PROJETO VERÃO — página de vendas (porta de entrada)
@@ -288,7 +288,7 @@ function ProvasVerao() {
             Mensagens reais recebidas no acompanhamento — o mesmo método por trás do PROJETO VERÃO.
           </p>
         </div>
-        <div className="dep-scroll" role="list">
+        <Marquee duration="75s" label="Depoimentos de alunas">
           <figure className="dep-card" role="listitem">
             <span className="dep-stars" aria-hidden="true">
               {Icon.star}
@@ -331,7 +331,7 @@ function ProvasVerao() {
             </blockquote>
             <figcaption>Aluna do acompanhamento</figcaption>
           </figure>
-        </div>
+        </Marquee>
         <p className="dep-note">
           Citações transcritas de mensagens reais. Nomes e fotos são publicados apenas com
           autorização de cada aluna.

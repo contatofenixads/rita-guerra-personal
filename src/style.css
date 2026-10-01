@@ -511,14 +511,68 @@ summary:focus-visible {
   font-size: 0.92rem;
 }
 
-/* ---------- depoimentos ---------- */
+/* ---------- depoimentos / resultados: carrossel infinito ---------- */
 
-.dep-scroll {
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  /* máscara suave nas laterais para os cards "entrarem e saírem" da área */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-mover var(--marquee-dur, 70s) linear infinite;
+  will-change: transform;
+}
+
+/* pausa suave no hover (desktop) para leitura do card */
+@media (hover: hover) {
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-group {
   display: flex;
   gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 12px;
+  padding-right: 20px; /* garante o mesmo espaçamento na emenda do loop */
+}
+
+@keyframes marquee-mover {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* acessibilidade: sem animação — cards estáticos, em grade, sem duplicata */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .marquee-group {
+    flex-wrap: wrap;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .marquee-group[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 .dep-card {
@@ -1221,7 +1275,7 @@ summary:focus-visible {
 
 /* ---------- resultados: antes e depois ---------- */
 
-.res-scroll {
+.res-marquee {
   margin-bottom: 40px;
 }
 

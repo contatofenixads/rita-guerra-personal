@@ -130,3 +130,40 @@ export function MiniDepo({ quote, who = 'Aluna do acompanhamento' }: { quote: st
     </figure>
   );
 }
+
+/**
+ * Carrossel infinito automático (esteira contínua da direita para a esquerda).
+ * - Loop perfeito: a faixa contém dois grupos idênticos e anima até -50%.
+ * - Pausa no hover (desktop) via animation-play-state.
+ * - prefers-reduced-motion: animação desativada, cards estáticos em grade.
+ * - duration: tempo de um ciclo completo (quanto maior, mais lento).
+ */
+export function Marquee({
+  children,
+  duration = '70s',
+  className = '',
+  label,
+}: {
+  children: React.ReactNode;
+  duration?: string;
+  className?: string;
+  label?: string;
+}) {
+  return (
+    <div
+      className={`marquee ${className}`}
+      style={{ '--marquee-dur': duration } as React.CSSProperties}
+      role="region"
+      aria-label={label}
+    >
+      <div className="marquee-track">
+        <div className="marquee-group" role="list">
+          {children}
+        </div>
+        <div className="marquee-group" aria-hidden="true">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
