@@ -773,8 +773,8 @@ summary:focus-visible {
 }
 
 .faq-list details {
-  background: #fff;
-  border: 1px solid var(--borda);
+  background: #ffffff;
+  border: 1px solid #d9cbbc;
   border-radius: 16px;
   padding: 0 22px;
   box-shadow: var(--sombra);
@@ -789,28 +789,42 @@ summary:focus-visible {
   gap: 16px;
   padding: 20px 0;
   font-weight: 600;
-  color: var(--cafe);
+  color: #241c16;
 }
 
 .faq-list summary::-webkit-details-marker {
   display: none;
 }
 
+.faq-list summary:hover {
+  color: var(--carmim-escuro);
+}
+
 .faq-list summary span {
   font-family: var(--fonte-titulo);
   font-size: 1.5rem;
-  color: var(--carmim);
+  color: var(--carmim-escuro);
   line-height: 1;
   transition: transform 0.2s ease;
+  flex: 0 0 auto;
+}
+
+.faq-list summary:hover span {
+  color: var(--carmim);
 }
 
 .faq-list details[open] summary span {
   transform: rotate(45deg);
 }
 
+.faq-list details[open] {
+  background: #ffffff;
+}
+
 .faq-list details p {
   padding-bottom: 20px;
-  color: var(--texto-suave);
+  color: #3f342b;
+  font-size: 1rem;
 }
 
 /* ---------- CTA final ---------- */
