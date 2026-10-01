@@ -1,9 +1,9 @@
 Add-Type -AssemblyName System.Drawing
 
-function Process-Logo {
-  param([string]$inPath, [string]$outPath, [bool]$recolorWhite, [int]$newWidth)
+function Process-Header {
+  param([string]$inPath, [string]$outPath, [int]$newWidth)
 
-  $src = [System.Drawing.Image]::FromFile($inPath)
+  $src = [System.Drawing.Bitmap]::FromFile($inPath)
   $scale = $newWidth / $src.Width
   $w = $newWidth
   $h = [int]($src.Height * $scale)
@@ -16,15 +16,8 @@ function Process-Logo {
       $bright = ($p.R + $p.G + $p.B) / 3
       $sat = [Math]::Max($p.R, [Math]::Max($p.G, $p.B)) - [Math]::Min($p.R, [Math]::Min($p.G, $p.B))
 
-      if ($bright -lt 45 -and $sat -lt 25) {
-        # fundo preto -> transparente (com suavizacao parcial)
-        $alpha = [Math]::Max(0, [int]((45 - $bright) / 45 * 255))
-        if ($alpha -gt 40) { $alpha = 0 } else { $alpha = [Math]::Min($alpha, 90) }
-        $carmim = [System.Drawing.Color]::FromArgb($alpha, 214, 69, 97)
-        $bmp.SetPixel($x, $y, $carmim)
-      }
-      elseif ($recolorWhite -and $bright -gt 185 -and $sat -lt 40) {
-        # texto branco -> cafe escuro (para uso em fundo claro)
+      if ($p.A -gt 200 -and $bright -gt 185 -and $sat -lt 40) {
+        # apenas texto branco OPACO -> cafe escuro; pixels transparentes ficam intactos
         $bmp.SetPixel($x, $y, [System.Drawing.Color]::FromArgb(255, 36, 28, 22))
       }
       else {
@@ -38,11 +31,35 @@ function Process-Logo {
   Write-Host "$outPath ok (${w}x${h})"
 }
 
-$base = "C:\Users\alanb\.verdent\verdent-projects\httpsglowelloficialcombr-https\src\assets"
+function Composite-Test {
+  param([string]$logoPath, [string]$outPath)
+  $logo = [System.Drawing.Bitmap]::FromFile($logoPath)
+  $bmp = New-Object System.Drawing.Bitmap($logo.Width, $logo.Height)
+  $g = [System.Drawing.Graphics]::FromImage($bmp)
+  $g.Clear([System.Drawing.Color]::FromArgb(255, 250, 246, 241))
+  $g.DrawImage($logo, 0, 0, $logo.Width, $logo.Height)
+  $g.Dispose()
+  $bmp.Save($outPath, [System.Drawing.Imaging.ImageFormat]::Png)
+  $bmp.Dispose()
+  $logo.Dispose()
+  Write-Host "$outPath ok"
+}
 
-# header: fundo claro -> branco vira cafe
-Process-Logo -inPath "$base\logo-raw.png" -outPath "$base\logo-header.png" -recolorWhite $true -newWidth 640
-# rodape / fundos escuros: mantem branco
-Process-Logo -inPath "$base\logo-raw.png" -outPath "$base\logo-footer.png" -recolorWhite $false -newWidth 640
-# simbolo para favicon
-Process-Logo -inPath "$base\mark-raw.png" -outPath "$base\logo-mark.png" -recolorWhite $false -newWidth 128
+$base = "C:\Users\alanb\.verdent\verdent-projects\httpsglowelloficialcombr-https\src\assets"
+$logos = "C:\Users\alanb\.verdent\verdent-projects\_rita_docs_tmp2\docs_tmp\drive_assets\logos"
+
+# header: recolore so o texto branco opaco para cafe; fundo transparente preservado
+Process-Header -inPath "$logos\l4.png" -outPath "$base\logo-header.png" -newWidth 720
+# footer: original direto (carmim + branco sobre transparente)
+Copy-Item "$logos\l4.png" "$base\logo-footer.png" -Force
+# simbolo/favicon: original direto
+Copy-Item "$logos\ic1.png" "$base\logo-mark.png" -Force
+Copy-Item "$base\logo-mark.png" "C:\Users\alanb\.verdent\verdent-projects\httpsglowelloficialcombr-https\public\favicon.png" -Force
+
+Composite-Test -logoPath "$base\logo-header.png" -outPath "$base\logo-header-teste-fundo-claro.png"
+
+# checagem de pixels
+$chk = [System.Drawing.Bitmap]::FromFile("$base\logo-header.png")
+Write-Host 'header pixel(5,5):' $chk.GetPixel(5,5)
+Write-Host 'header pixel(470,2):' $chk.GetPixel(470,2)
+$chk.Dispose()
