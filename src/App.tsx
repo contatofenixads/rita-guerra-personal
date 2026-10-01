@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO } from './config';
 import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
+import logoHeader from './assets/logo-header.png';
+import logoFooter from './assets/logo-footer.png';
 import heroImg from './assets/hero.jpg';
 import treino1 from './assets/treino-1.jpg';
 import treino2 from './assets/treino-2.jpg';
@@ -11,6 +13,12 @@ import detalheGarrafa from './assets/detalhe-garrafa.jpg';
 import detalheWatch from './assets/detalhe-watch.jpg';
 import ritaOlhar from './assets/rita-olhar.jpg';
 import ritaRiso from './assets/rita-riso.jpg';
+import antesDepois1 from './assets/antes-depois-1.jpg';
+import antesDepois2 from './assets/antes-depois-2.jpg';
+import antesDepois3 from './assets/antes-depois-3.jpg';
+import antesDepois4 from './assets/antes-depois-4.jpg';
+import resultadoGluteo from './assets/resultado-gluteo.jpg';
+import resultado3Meses from './assets/resultado-3meses.jpg';
 
 /* ---------- cabeçalho ---------- */
 
@@ -18,9 +26,8 @@ function Header({ salesMode = false }: { salesMode?: boolean }) {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a href={salesMode ? hrefTo('') : '#topo'} className="wordmark" aria-label="Rita Guerra — Personal Trainer">
-          <span className="wordmark-name">Rita Guerra</span>
-          <span className="wordmark-sub">Personal Trainer</span>
+        <a href={salesMode ? hrefTo('') : '#topo'} className="header-logo" aria-label="Rita Guerra — Personal Trainer">
+          <img src={logoHeader} alt="Rita Guerra — Personal Trainer" />
         </a>
         {!salesMode && (
           <nav className="header-nav" aria-label="Navegação principal">
@@ -221,9 +228,37 @@ function ParaQuemE() {
 }
 
 function Resultados() {
+  const resultados = [
+    {
+      img: antesDepois1,
+      alt: 'Comparação antes e depois de aluna da Rita Guerra, vista lateral, após três meses de acompanhamento',
+      cap: '3 meses de acompanhamento: “TRÊS MESES E OLHEM ESSE RESULTADO!! Tudo isso apenas com os treinos, sem grandes mudanças na alimentação.”',
+    },
+    {
+      img: antesDepois2,
+      alt: 'Antes e depois de aluna em mesma roupa e local, com evolução visível na definição abdominal',
+      cap: 'Mesma roupa, mesmo local — evolução de definição no acompanhamento.',
+    },
+    {
+      img: antesDepois3,
+      alt: 'Antes e depois de aluna de corpo inteiro na academia, com progressão evidente',
+      cap: 'Progresso da aluna no acompanhamento.',
+    },
+    {
+      img: antesDepois4,
+      alt: 'Antes e depois de aluna com mudança forte de contorno corporal',
+      cap: 'Progresso da aluna no acompanhamento.',
+    },
+    {
+      img: resultadoGluteo,
+      alt: 'Publicação da Rita mostrando evolução de bumbum de aluna em três tempos: antes, um mês e três meses',
+      cap: '“O objetivo dela era levantar o bumbum — diferença já no primeiro mês.” — Rita',
+      story: true,
+    },
+  ];
   const relatos = [
     { n: '-10 kg', d: '“Bati -10kg essa semana… OLHA ESSE OMBRO. A MÃE ESTÁ MAROMBA.” — relato de aluna' },
-    { n: '1 mês', d: '“Olha o resultado que recebi da minha aluna: o objetivo era levantar o bumbum — diferença já no primeiro mês.” — Rita' },
+    { n: '1 mês', d: '“O objetivo dela era levantar o bumbum — diferença já no primeiro mês.” — Rita' },
     { n: 'Costas', d: '“MEU DEUS MULHER, suas costas estão definindo… Obrigada, Ritinha. Sem você não seria possível.” — relato de aluna' },
     { n: 'Do zero', d: '“Eu detestava academia e agora tô começando a gostar… hoje consegui fazer tudo com peso.” — relato de aluna' },
   ];
@@ -234,9 +269,17 @@ function Resultados() {
           <Eyebrow>Resultados</Eyebrow>
           <h2>Progresso que as próprias alunas contam.</h2>
           <p className="lead">
-            Relatos reais recebidos no acompanhamento. Cada corpo responde no seu tempo — o que não
-            muda é o cuidado com o processo.
+            Antes e depois reais, publicados com autorização das alunas. Cada corpo responde no seu
+            tempo — o que não muda é o cuidado com o processo.
           </p>
+        </div>
+        <div className="dep-scroll res-scroll" role="list">
+          {resultados.map((r) => (
+            <figure className={`res-card${r.story ? ' res-card-story' : ''}`} role="listitem" key={r.cap}>
+              <img src={r.img} alt={r.alt} loading="lazy" decoding="async" />
+              <figcaption>{r.cap}</figcaption>
+            </figure>
+          ))}
         </div>
         <div className="stats">
           {relatos.map((r) => (
@@ -293,14 +336,21 @@ function Depoimentos() {
 }
 
 function Sobre() {
+  const galeria = [
+    { src: ritaEscadaria, alt: 'Rita Guerra em bastidor, sentada em uma escadaria' },
+    { src: ritaOlhar, alt: 'Rita Guerra olhando para a câmera' },
+    { src: ritaRiso, alt: 'Rita Guerra rindo' },
+    { src: treino1, alt: 'Rita Guerra alongando os braços em parque urbano' },
+    { src: treino2, alt: 'Rita Guerra em pose de alongamento ao ar livre' },
+    { src: detalheGarrafa, alt: 'Garrafa de água personalizada com o nome Rita Guerra' },
+  ];
   return (
     <section className="section section-sand" id="sobre">
       <div className="container split">
         <div className="sobre-media">
           <img src={ritaSobre} alt="Rita Guerra sorrindo para a câmera" loading="lazy" decoding="async" />
           <div className="sobre-fotos" aria-hidden="true">
-            <img src={ritaEscadaria} alt="" loading="lazy" decoding="async" />
-            <img src={detalheGarrafa} alt="" loading="lazy" decoding="async" />
+            <img src={detalheWatch} alt="" loading="lazy" decoding="async" />
           </div>
         </div>
         <div className="section-head">
@@ -320,6 +370,13 @@ function Sobre() {
           <a className="text-link" href="#contato">
             Vamos treinar juntas? <span aria-hidden="true">{Icon.arrow}</span>
           </a>
+        </div>
+      </div>
+      <div className="container">
+        <div className="sobre-galeria" aria-label="Galeria de fotos da Rita">
+          {galeria.map((g) => (
+            <img key={g.src} src={g.src} alt={g.alt} loading="lazy" decoding="async" />
+          ))}
         </div>
       </div>
     </section>
@@ -364,13 +421,6 @@ function Metodo() {
               <p>{p.d}</p>
             </article>
           ))}
-        </div>
-        <div className="metodo-fotos" aria-hidden="true">
-          <img src={treino1} alt="" loading="lazy" decoding="async" />
-          <img src={treino2} alt="" loading="lazy" decoding="async" />
-          <img src={detalheWatch} alt="" loading="lazy" decoding="async" />
-          <img src={ritaOlhar} alt="" loading="lazy" decoding="async" />
-          <img src={ritaRiso} alt="" loading="lazy" decoding="async" />
         </div>
         <MiniDepo quote="Adoro a diversidade e adoro não ser subestimada por você." />
       </div>
@@ -521,10 +571,7 @@ function Footer({ salesMode = false }: { salesMode?: boolean }) {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div>
-          <span className="wordmark wordmark-light">
-            <span className="wordmark-name">Rita Guerra</span>
-            <span className="wordmark-sub">Personal Trainer</span>
-          </span>
+          <img className="footer-logo" src={logoFooter} alt="Rita Guerra — Personal Trainer" loading="lazy" decoding="async" />
           <p className="footer-copy">Treino individualizado com acompanhamento de verdade.</p>
         </div>
         <nav aria-label="Navegação do rodapé">
