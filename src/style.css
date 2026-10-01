@@ -829,7 +829,7 @@ summary:focus-visible {
 
 /* ---------- CTA final ---------- */
 
-.section-cta {
+.cta-section {
   background: linear-gradient(140deg, var(--carmim) 0%, var(--carmim-escuro) 100%);
   color: #fff;
 }
