@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -41,6 +42,7 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 img {
@@ -524,13 +526,11 @@ summary:focus-visible {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-mover var(--marquee-dur, 70s) linear infinite;
-  will-change: transform;
 }
 
 /* pausa suave no hover (desktop) para leitura do card */
 @media (hover: hover) {
-  .marquee:hover .marquee-track {
+  .marquee:hover .marquee-group {
     animation-play-state: paused;
   }
 }
@@ -539,14 +539,18 @@ summary:focus-visible {
   display: flex;
   gap: 20px;
   padding-right: 20px; /* garante o mesmo espaçamento na emenda do loop */
+  /* anima cada grupo (camadas menores) em vez da track inteira:
+     evita o limite de textura de GPU de celulares, que cortava/sumia os cards */
+  animation: marquee-loop var(--marquee-dur, 70s) linear infinite;
+  will-change: transform;
 }
 
-@keyframes marquee-mover {
+@keyframes marquee-loop {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
@@ -558,13 +562,14 @@ summary:focus-visible {
   }
 
   .marquee-track {
-    animation: none;
     width: auto;
     flex-wrap: wrap;
     gap: 20px;
   }
 
   .marquee-group {
+    animation: none;
+    will-change: auto;
     flex-wrap: wrap;
     width: 100%;
     padding-right: 0;
@@ -947,6 +952,8 @@ summary:focus-visible {
 .verao-flag {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
   gap: 10px;
   width: min(1160px, 100% - 48px);
   margin: 0 auto 34px;
@@ -1567,5 +1574,22 @@ section[id] {
 
   * {
     transition: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* header compacto: evita overflow de logo + botao em telas estreitas */
+  .header-inner {
+    gap: 12px;
+  }
+
+  .header-logo img {
+    height: 27px;
+  }
+
+  .header-inner .btn-sm {
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    white-space: nowrap;
   }
 }

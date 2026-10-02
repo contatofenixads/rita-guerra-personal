@@ -615,7 +615,7 @@ function MobileBar({ salesMode = false }: { salesMode?: boolean }) {
   return (
     <div className="mobile-bar" role="complementary" aria-label="Ações rápidas">
       {salesMode ? (
-        <a className="btn btn-primary" href="#verao-investimento">
+        <a className="btn btn-primary" href={hrefTo('projeto-verao', 'verao-investimento')}>
           Quero participar
         </a>
       ) : (
@@ -684,7 +684,7 @@ export default function App() {
     }
     window.scrollTo({ top: 0 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [route.page]);
+  }, [route.page, route.anchor]);
 
   return (
     <>
