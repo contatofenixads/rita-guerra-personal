@@ -28,26 +28,26 @@ export const CREF = '';
 
 /**
  * PROJETO VERÃO — página de vendas.
- *
- * REGRAS: nenhum campo abaixo pode ser preenchido com suposição.
- * Tudo que estiver como string vazia renderiza um marcador claro
- * de "informação a confirmar" na página, e a seção correspondente
- * deixa de prometer o que não foi confirmado.
- *
- * Campos a aguardar da Rita:
- *  - formato / duracao: como o programa funciona no tempo
- *  - incluso: lista do que está entregue na compra
- *  - preco / pagamento: valor e condições
- *  - bonus: apenas se existirem
- *  - garantia: apenas se existir
- *  - linkCompra: link de checkout (Hotmart/Kiwify/etc.)
+ * Dados oficiais do produto (referência fornecida pela Rita).
+ * Campos vazios permanecem como pendência — nada é inventado.
  */
 export const VERAO = {
-  formato: '',
-  duracao: '',
-  incluso: [] as string[],
-  preco: '',
-  pagamento: '',
+  formato: 'Protocolo de treino completo em PDF',
+  duracao: '90 dias',
+  precoAnterior: 'R$ 97,00',
+  preco: 'R$ 47,00',
+  pagamento: 'Pagamento único',
+  acesso: 'Acesso imediato e vitalício',
+  incluso: [
+    '90 dias de treino completo',
+    '4 treinos semanais (A, B, C e D)',
+    'Orientações de cardio (mín. 20 minutos por dia)',
+    'Metas diárias de alimentação, água, sono e autocuidado',
+    'Guia de execução dos exercícios (com fotos e explicações)',
+    'Estratégia de progressão de carga',
+    'Checklist de acompanhamento',
+    'Material em PDF, organizado e de fácil uso',
+  ],
   bonus: [] as string[],
   garantia: '',
   linkCompra: '',
@@ -60,8 +60,8 @@ export const SEO = {
       'Treinos individualizados com acompanhamento próximo da personal trainer Rita Guerra. Presencial e online, com treino no app, vídeos de execução e ajustes na sua rotina.',
   },
   verao: {
-    title: 'PROJETO VERÃO — Rita Guerra | Programa de entrada',
+    title: 'PROJETO VERÃO — Rita Guerra | Protocolo de treino de 90 dias',
     description:
-      'O PROJETO VERÃO é o programa de entrada da personal trainer Rita Guerra: treino estruturado e acompanhamento para começar de vez. Veja como participar.',
+      'O PROJETO VERÃO é um plano de treino completo de 90 dias da personal trainer Rita Guerra: treinos estruturados, orientações de cardio, metas diárias e material em PDF.',
   },
 };
