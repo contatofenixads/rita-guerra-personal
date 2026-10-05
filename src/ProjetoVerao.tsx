@@ -175,10 +175,18 @@ function PvHeader() {
 function PvHero() {
   return (
     <section className="pv-hero" id="topo">
-      <div className="container pv-hero-grid">
+      <div className="pv-hero-grid">
         <div className="pv-hero-copy">
           <p className="pv-hero-kicker">P R O J E T O</p>
-          <h1 className="pv-hero-title">Verão</h1>
+          <h1 className="pv-hero-title">
+            Verão
+            <span className="pv-hero-sun" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+                <path d="M13 32a11 11 0 0 1 22 0" />
+                <path d="M24 11v7M9 20l5.5 4M39 20l-5.5 4M4 32h7M37 32h7" />
+              </svg>
+            </span>
+          </h1>
           <p className="pv-hero-sub">
             Um plano de treino completo para transformar o seu corpo até o final do ano.
           </p>
@@ -502,32 +510,36 @@ function PvResultados() {
 function PvInvestimento() {
   return (
     <section className="pv-section" id="verao-investimento">
-      <div className="container pv-invest">
-        <div className="pv-preco-bloco">
-          <h2 className="pv-h2">
-            Investimento <span className="pv-h2-line" aria-hidden="true" />
-          </h2>
-          <p className="pv-preco-antigo">De {VERAO.precoAnterior}</p>
-          <p className="pv-preco">{VERAO.preco}</p>
-          <p className="pv-preco-cond">
-            {VERAO.pagamento}
-            <br />
-            {VERAO.acesso}
-          </p>
+      <div className="container">
+        <div className="pv-invest">
+          <div className="pv-preco-bloco">
+            <h2 className="pv-h2">
+              Investimento <span className="pv-h2-line" aria-hidden="true" />
+            </h2>
+            <p className="pv-preco-antigo">De {VERAO.precoAnterior}</p>
+            <p className="pv-preco">{VERAO.preco}</p>
+            <p className="pv-preco-cond">
+              {VERAO.pagamento}
+              <br />
+              {VERAO.acesso}
+            </p>
+          </div>
+          <ul className="pv-check-list pv-inclui">
+            {VERAO.incluso.map((item) => (
+              <li key={item}>
+                <span className="pv-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="pv-invest-cta">
           <PvBtn>Quero meu Projeto Verão</PvBtn>
         </div>
-        <ul className="pv-check-list pv-inclui">
-          {VERAO.incluso.map((item) => (
-            <li key={item}>
-              <span className="pv-check" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
