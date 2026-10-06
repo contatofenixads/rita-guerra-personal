@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO } from './config';
+import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO, VERAO } from './config';
 import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Marquee, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
 import logoHeader from './assets/logo-header.png';
@@ -19,6 +19,7 @@ import antesDepois3 from './assets/antes-depois-3.jpg';
 import antesDepois4 from './assets/antes-depois-4.jpg';
 import resultadoGluteo from './assets/resultado-gluteo.jpg';
 import resultado3Meses from './assets/resultado-3meses.jpg';
+import pvHeroPraia from './assets/pv-hero-praia.jpg';
 
 /* ---------- cabeçalho ---------- */
 
@@ -479,19 +480,67 @@ function Servicos() {
         <p className="servicos-foot">
           Não sabe qual é o seu formato? Me chama — a gente descobre juntas.
         </p>
-        <a className="verao-card" href={hrefTo('projeto-verao')}>
-            <div>
-              <span className="verao-card-tag">Programa de entrada</span>
-              <h3>PROJETO VERÃO</h3>
-              <p>
-                Quer começar com um programa estruturado, em formato de entrada? Conheça o Projeto
-                Verão, criado pela Rita como porta de entrada para o acompanhamento.
-              </p>
+        <a className="verao-banner" href={hrefTo('projeto-verao')} aria-label="Conhecer o Projeto Verão">
+          <div className="verao-banner-media">
+            <img
+              className="verao-banner-foto"
+              src={pvHeroPraia}
+              alt="Rita Guerra na praia, de bikini, em dia de sol"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="verao-banner-shade" aria-hidden="true" />
+            <div className="verao-banner-head">
+              <span className="verao-banner-kicker">P R O J E T O</span>
+              <span className="verao-banner-script">Verão</span>
+              <span className="verao-banner-sub">
+                Um plano de treino completo para transformar o seu corpo até o final do ano.
+              </span>
             </div>
-            <span className="verao-card-link">
-              Conhecer o Projeto Verão <span aria-hidden="true">{Icon.arrow}</span>
+            <ul className="verao-banner-beneficios">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11" />
+                </svg>
+                <span>Treinos completos <em>(4x por semana)</em></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 21c-4.4-3.6-8-6.7-8-10.4C4 7.4 6.4 5 9.2 5c1.2 0 2.2.5 2.8 1.2A3.9 3.9 0 0 1 14.8 5C17.6 5 20 7.4 20 10.6c0 3.7-3.6 6.8-8 10.4Z" />
+                </svg>
+                <span>Orientação <em>de cardio</em></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+                  <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+                </svg>
+                <span>90 dias de <em>programa</em></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M10 8.8v6.4l5.2-3.2L10 8.8Z" />
+                </svg>
+                <span>Com vídeo <em>de execução</em></span>
+              </li>
+            </ul>
+          </div>
+          <div className="verao-banner-panel">
+            <h3>Quer começar agora?</h3>
+            <p>
+              Um programa pronto para mulheres que querem emagrecer, definir e chegar ao verão se
+              sentindo muito melhor com o próprio corpo, sem precisar contratar uma consultoria
+              individual.
+            </p>
+            <p className="verao-banner-preco">{VERAO.preco}</p>
+            <p className="verao-banner-acesso">Acesso imediato</p>
+            <span className="verao-banner-cta">
+              Quero começar o Projeto Verão <span aria-hidden="true">→</span>
             </span>
-          </a>
+            <span className="verao-banner-nota">Programa pronto • Sem acompanhamento individual</span>
+          </div>
+        </a>
       </div>
     </section>
   );
