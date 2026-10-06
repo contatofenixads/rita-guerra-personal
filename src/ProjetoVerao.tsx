@@ -3,9 +3,11 @@ import { VERAO, INSTAGRAM_URL, whatsappNumber } from './config';
 import { hrefTo } from './ui';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
-import heroImg from './assets/hero.jpg';
-import treino2 from './assets/treino-2.jpg';
-import ritaEscadaria from './assets/rita-escadaria.jpg';
+import pvHeroPraia from './assets/pv-hero-praia.jpg';
+import pvRecebe from './assets/pv-recebe.jpg';
+import pvMateriais from './assets/pv-materiais.jpg';
+import pvResultados from './assets/pv-resultados.jpg';
+import pvCta from './assets/pv-cta.jpg';
 import antesDepois1 from './assets/antes-depois-1.jpg';
 import antesDepois2 from './assets/antes-depois-2.jpg';
 import antesDepois4 from './assets/antes-depois-4.jpg';
@@ -194,8 +196,8 @@ function PvHero() {
         </div>
         <div className="pv-hero-media">
           <img
-            src={heroImg}
-            alt="Rita Guerra, personal trainer, ao ar livre em dia de sol"
+            src={pvHeroPraia}
+            alt="Rita Guerra na praia, de bikini, sorrindo ao vento"
             fetchPriority="high"
           />
         </div>
@@ -273,27 +275,13 @@ function PvReceber() {
             ))}
           </ul>
         </div>
-        <div className="pv-receber-visual" aria-hidden="true">
-          <div className="pv-cover">
-            <img src={treino2} alt="" loading="lazy" decoding="async" />
-            <div className="pv-cover-overlay">
-              <span className="pv-cover-kicker">Projeto</span>
-              <span className="pv-cover-verao">Verão</span>
-              <span className="pv-cover-sub">Protocolo de treino · 90 dias</span>
-            </div>
-          </div>
-          <div className="pv-sheet pv-sheet-1">
-            <span className="pv-sheet-title">Treino A</span>
-            <span className="pv-skel w70" />
-            <span className="pv-skel w55" />
-            <span className="pv-skel w62" />
-          </div>
-          <div className="pv-sheet pv-sheet-2">
-            <span className="pv-sheet-title">Checklist diário</span>
-            <span className="pv-skel w60" />
-            <span className="pv-skel w48" />
-            <span className="pv-skel w66" />
-          </div>
+        <div className="pv-receber-visual">
+          <img
+            src={pvRecebe}
+            alt="Material do Projeto Verão no tablet e em PDFs: capa, treino A e checklist diária"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -438,31 +426,19 @@ function PvOrientacoes() {
 /* ---------- material organizado ---------- */
 
 function PvMaterial() {
-  const sheets = [
-    { t: 'Treino A', s: 'Inferiores' },
-    { t: 'Orientações de cardio', s: 'com opções' },
-    { t: 'Metas da semana', s: 'práticas e realistas' },
-    { t: 'Checklist diário', s: 'de acompanhamento' },
-  ];
   return (
     <section className="pv-section pv-bg-sand" id="material">
       <div className="container">
         <h2 className="pv-h2">
           Material organizado e prático <span className="pv-h2-line" aria-hidden="true" />
         </h2>
-        <div className="pv-material-grid">
-          {sheets.map((s) => (
-            <article className="pv-material" key={s.t}>
-              <span className="pv-material-title">{s.t}</span>
-              <span className="pv-material-sub">{s.s}</span>
-              <span className="pv-skel w80" />
-              <span className="pv-skel w65" />
-              <span className="pv-skel w72" />
-              <span className="pv-skel w58" />
-              <span className="pv-material-tag">PDF</span>
-            </article>
-          ))}
-        </div>
+        <img
+          className="pv-material-img"
+          src={pvMateriais}
+          alt="PDFs do Projeto Verão: treino A, orientações de cardio, metas da semana e checklist diária"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </section>
   );
@@ -481,7 +457,7 @@ function PvResultados() {
   ];
   return (
     <section className="pv-section pv-dark" id="resultados-pv">
-      <div className="container pv-split">
+      <div className="container pv-result-split">
         <div>
           <h2 className="pv-h2 pv-h2-claro">Resultados reais vêm de consistência.</h2>
           <p className="pv-lead pv-lead-claro">
@@ -489,13 +465,21 @@ function PvResultados() {
             treinos e chegar no final do ano com mais resultado.
           </p>
         </div>
+        <div className="pv-result-media">
+          <img
+            src={pvResultados}
+            alt="Detalhe das costas e ombros definidos de uma praticante de treino"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+      <div className="container">
         <div className="pv-result-fotos">
           {fotos.map((f) => (
             <img key={f.img} src={f.img} alt={f.alt} loading="lazy" decoding="async" />
           ))}
         </div>
-      </div>
-      <div className="container">
         <p className="pv-result-note">
           Antes e depois reais de alunas, publicados com autorização. Resultados variam de pessoa
           para pessoa — o que sustenta o progresso é a consistência.
@@ -601,7 +585,7 @@ function PvFaq() {
 function PvFinal() {
   return (
     <section className="pv-final" id="contato">
-      <img className="pv-final-bg" src={ritaEscadaria} alt="" loading="lazy" decoding="async" />
+      <img className="pv-final-bg" src={pvCta} alt="" loading="lazy" decoding="async" />
       <div className="pv-final-overlay" />
       <div className="container pv-final-inner">
         <h2>
