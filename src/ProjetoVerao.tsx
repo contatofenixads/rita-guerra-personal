@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { VERAO, INSTAGRAM_URL, whatsappNumber } from './config';
 import { hrefTo } from './ui';
+import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
 import pvHeroPraia from './assets/pv-hero-praia.jpg';
@@ -31,11 +32,13 @@ const pvLink = (anchor: string) => hrefTo('projeto-verao', anchor);
 const WHATS_MSG = whatsappNumber
   ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Oi, Rita! Quero meu PROJETO VERÃO.')}`
   : '';
-const buyHref = VERAO.linkCompra || WHATS_MSG || hrefTo('', 'contato');
 
 function PvBtn({ children }: { children: React.ReactNode }) {
+  const { config } = useSiteContent();
+  const href =
+    config['verao.linkCompra'] || VERAO.linkCompra || WHATS_MSG || hrefTo('', 'contato');
   return (
-    <a className="pv-btn" href={buyHref}>
+    <a className="pv-btn" href={href}>
       {children} <span aria-hidden="true">→</span>
     </a>
   );
@@ -177,7 +180,14 @@ function PvHeader() {
 function PvHero() {
   return (
     <section className="pv-hero" id="topo">
-      <div className="pv-hero-grid">
+      <img
+        className="pv-hero-bg"
+        src={pvHeroPraia}
+        alt="Rita Guerra caminhando na praia, de bikini azul, em dia de sol"
+        fetchPriority="high"
+      />
+      <div className="pv-hero-shade" aria-hidden="true" />
+      <div className="container pv-hero-inner">
         <div className="pv-hero-copy">
           <p className="pv-hero-kicker">P R O J E T O</p>
           <h1 className="pv-hero-title">
@@ -190,16 +200,10 @@ function PvHero() {
             </span>
           </h1>
           <p className="pv-hero-sub">
-            Um plano de treino completo para transformar o seu corpo até o final do ano.
+            Um plano de treino completo para <strong>transformar o seu corpo</strong> até o final
+            do ano.
           </p>
           <PvBtn>Quero meu Projeto Verão</PvBtn>
-        </div>
-        <div className="pv-hero-media">
-          <img
-            src={pvHeroPraia}
-            alt="Rita Guerra na praia, de bikini, sorrindo ao vento"
-            fetchPriority="high"
-          />
         </div>
       </div>
     </section>
@@ -492,6 +496,11 @@ function PvResultados() {
 /* ---------- investimento ---------- */
 
 function PvInvestimento() {
+  const { config } = useSiteContent();
+  const preco = config['verao.preco'] || VERAO.preco;
+  const precoAnterior = config['verao.precoAnterior'] || VERAO.precoAnterior;
+  const pagamento = config['verao.pagamento'] || VERAO.pagamento;
+  const acesso = config['verao.acesso'] || VERAO.acesso;
   return (
     <section className="pv-section" id="verao-investimento">
       <div className="container">
@@ -500,12 +509,12 @@ function PvInvestimento() {
             <h2 className="pv-h2">
               Investimento <span className="pv-h2-line" aria-hidden="true" />
             </h2>
-            <p className="pv-preco-antigo">De {VERAO.precoAnterior}</p>
-            <p className="pv-preco">{VERAO.preco}</p>
+            <p className="pv-preco-antigo">De {precoAnterior}</p>
+            <p className="pv-preco">{preco}</p>
             <p className="pv-preco-cond">
-              {VERAO.pagamento}
+              {pagamento}
               <br />
-              {VERAO.acesso}
+              {acesso}
             </p>
           </div>
           <ul className="pv-check-list pv-inclui">
@@ -532,7 +541,8 @@ function PvInvestimento() {
 /* ---------- FAQ ---------- */
 
 function PvFaq() {
-  const faqs = [
+  const { faqVerao } = useSiteContent();
+  const FALLBACK = [
     {
       q: 'Por quanto tempo terei acesso?',
       a: 'O acesso é vitalício: você faz o pagamento uma única vez e o material fica disponível para você sempre.',
@@ -558,6 +568,7 @@ function PvFaq() {
       a: 'Para quem procura atalho ou promessa milagrosa. O projeto entrega estrutura, direcionamento e material completo — os resultados vêm da sua consistência nos treinos.',
     },
   ];
+  const faqs = faqVerao.length > 0 ? faqVerao : FALLBACK;
   return (
     <section className="pv-section pv-bg-sand" id="verao-faq">
       <div className="container pv-narrow">

@@ -1719,47 +1719,76 @@ section[id] {
   font-size: 0.78rem;
 }
 
-/* ---------- hero ---------- */
+/* ---------- hero (estilo poster: foto full-bleed + lettering sobreposto) ---------- */
 
 .pv-hero {
-  padding: calc(84px + clamp(32px, 5vw, 64px)) 0 clamp(40px, 6vw, 72px);
+  position: relative;
+  min-height: clamp(540px, 82vh, 760px);
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
-/* grid sem container: a foto sangra até a borda direita, como na referência */
-.pv-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(28px, 5vw, 64px);
-  align-items: center;
-  padding-left: max(24px, calc((100% - 1160px) / 2));
+.pv-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+}
+
+/* véu azul no topo para o lettering branco/creme ler como no poster */
+.pv-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(21, 58, 88, 0.5) 0%, rgba(21, 58, 88, 0.18) 38%, rgba(21, 58, 88, 0) 62%),
+    linear-gradient(to top, rgba(20, 45, 66, 0.35) 0%, rgba(20, 45, 66, 0) 30%);
+}
+
+.pv-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: calc(96px + clamp(28px, 6vw, 72px));
+  display: flex;
+  justify-content: center;
+}
+
+.pv-hero-copy {
+  text-align: center;
+  max-width: 640px;
 }
 
 .pv-hero-kicker {
-  font-size: clamp(1.2rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.15rem, 2.6vw, 1.9rem);
   font-weight: 700;
-  letter-spacing: 0.35em;
-  color: var(--pv-cafe);
+  letter-spacing: 0.45em;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(15, 40, 60, 0.4);
 }
 
 .pv-hero-title {
   font-family: 'Style Script', 'Fraunces', Georgia, serif;
   font-style: normal;
   font-weight: 400;
-  font-size: clamp(4.4rem, 11vw, 8.2rem);
+  font-size: clamp(4.8rem, 13vw, 9.5rem);
   line-height: 1;
-  color: var(--pv-vinho);
+  color: #f6e7c8;
   margin: 4px 0 0;
   position: relative;
   display: inline-block;
-  padding-right: 58px;
+  padding-right: 64px;
+  text-shadow: 0 4px 22px rgba(15, 40, 60, 0.45);
 }
 
 .pv-hero-sun {
   position: absolute;
-  top: -2px;
+  top: -4px;
   right: 0;
-  width: clamp(34px, 4vw, 48px);
-  color: var(--pv-tinto);
+  width: clamp(38px, 4.5vw, 56px);
+  color: #f6e7c8;
 }
 
 .pv-hero-sun svg {
@@ -1769,32 +1798,24 @@ section[id] {
 }
 
 .pv-hero-sub {
-  margin-top: 22px;
-  max-width: 44ch;
-  font-size: 1.12rem;
+  margin-top: 18px;
+  max-width: 46ch;
+  margin-inline: auto;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   line-height: 1.55;
-  color: var(--pv-cafe);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(15, 40, 60, 0.45);
+}
+
+.pv-hero-sub strong {
+  font-weight: 800;
 }
 
 .pv-hero-copy .pv-btn {
   margin-top: 30px;
-}
-
-.pv-hero-media {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.pv-hero-media img {
-  display: block;
-  width: auto;
-  height: clamp(460px, 46vw, 640px);
-  border-radius: 200px 0 0 24px;
-  object-fit: cover;
-  box-shadow: 0 24px 60px rgba(126, 48, 64, 0.18);
 }
 
 /* ---------- faixa de diferenciais ---------- */
@@ -2337,27 +2358,22 @@ section[id] {
 /* ---------- responsivo ---------- */
 
 @media (max-width: 960px) {
-  .pv-hero-grid,
   .pv-split,
   .pv-result-split,
   .pv-invest {
     grid-template-columns: 1fr;
   }
 
-  .pv-hero-grid {
-    padding-left: 24px;
-    padding-right: 24px;
-    gap: 30px;
+  .pv-hero {
+    min-height: clamp(500px, 88vh, 680px);
   }
 
-  .pv-hero-media {
-    order: -1;
+  .pv-hero-bg {
+    object-position: 50% 22%;
   }
 
-  .pv-hero-media img {
-    height: clamp(360px, 72vw, 520px);
-    border-radius: 120px 18px 18px 18px;
-    object-position: 50% 12%;
+  .pv-hero-inner {
+    padding-top: calc(88px + 24px);
   }
 
   .pv-faixa-grid {

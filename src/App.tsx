@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO, VERAO } from './config';
 import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Marquee, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
+import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
 import heroImg from './assets/hero.jpg';
@@ -228,8 +229,18 @@ function ParaQuemE() {
   );
 }
 
+const IMAGEM_REFS: Record<string, string> = {
+  'antes-depois-1': antesDepois1,
+  'antes-depois-2': antesDepois2,
+  'antes-depois-3': antesDepois3,
+  'antes-depois-4': antesDepois4,
+  'resultado-gluteo': resultadoGluteo,
+  'resultado-3meses': resultado3Meses,
+};
+
 function Resultados() {
-  const resultados = [
+  const { resultados } = useSiteContent();
+  const resultadosFallback = [
     {
       img: antesDepois1,
       alt: 'Comparação antes e depois de aluna da Rita Guerra, vista lateral, após três meses de acompanhamento',
@@ -257,6 +268,14 @@ function Resultados() {
       story: true,
     },
   ];
+  const lista: { img: string; alt: string; cap: string; story?: boolean }[] =
+    resultados.length > 0
+      ? resultados.map((r) => ({
+          img: IMAGEM_REFS[r.imagemRef] ?? antesDepois1,
+          alt: r.alt,
+          cap: r.legenda,
+        }))
+      : resultadosFallback;
   const relatos = [
     { n: '-10 kg', d: '“Bati -10kg essa semana… OLHA ESSE OMBRO. A MÃE ESTÁ MAROMBA.” — relato de aluna' },
     { n: '1 mês', d: '“O objetivo dela era levantar o bumbum — diferença já no primeiro mês.” — Rita' },
@@ -275,7 +294,7 @@ function Resultados() {
           </p>
         </div>
         <Marquee duration="65s" className="res-marquee" label="Resultados de alunas">
-          {resultados.map((r) => (
+          {lista.map((r) => (
             <figure className={`res-card${r.story ? ' res-card-story' : ''}`} role="listitem" key={r.cap}>
               <img src={r.img} alt={r.alt} loading="lazy" decoding="async" />
               <figcaption>{r.cap}</figcaption>
@@ -296,7 +315,8 @@ function Resultados() {
 }
 
 function Depoimentos() {
-  const deps = [
+  const { depoimentos } = useSiteContent();
+  const depsFallback = [
     { q: 'Ainda não acredito que consegui evoluir tanto… Ter o seu auxílio deixa tudo mais leve. Seu trabalho é incrível.' },
     { q: 'Desde que comecei, seu trabalho tem sido impecável. Ouve e acolhe as nossas necessidades e respeita as limitações.' },
     { q: 'Tudo muito prático e fácil de entender, principalmente os vídeos de cada exercício… dá para perceber o cuidado na montagem de cada treino.' },
@@ -304,6 +324,8 @@ function Depoimentos() {
     { q: 'Tô amando os treinos! Tive retorno da nutricionista e, do que mais pediram, foi braço — fiquei super feliz.' },
     { q: 'Passando pra falar que eu AMEI o treino, já fiz uma semana completa com ele. Que treino gostoso.' },
   ];
+  const deps: { q: string; who?: string }[] =
+    depoimentos.length > 0 ? depoimentos : depsFallback;
   return (
     <section className="section" id="depoimentos">
       <div className="container">
@@ -323,7 +345,7 @@ function Depoimentos() {
                 {Icon.star}
               </span>
               <blockquote>“{d.q}”</blockquote>
-              <figcaption>Aluna do acompanhamento</figcaption>
+              <figcaption>{d.who || 'Aluna do acompanhamento'}</figcaption>
             </figure>
           ))}
         </Marquee>
@@ -430,6 +452,7 @@ function Metodo() {
 }
 
 function Servicos() {
+  const { config } = useSiteContent();
   return (
     <section className="section section-dark" id="servicos">
       <div className="container">
@@ -533,7 +556,7 @@ function Servicos() {
               sentindo muito melhor com o próprio corpo, sem precisar contratar uma consultoria
               individual.
             </p>
-            <p className="verao-banner-preco">{VERAO.preco}</p>
+            <p className="verao-banner-preco">{config['verao.preco'] || VERAO.preco}</p>
             <p className="verao-banner-acesso">Acesso imediato</p>
             <span className="verao-banner-cta">
               Quero começar o Projeto Verão <span aria-hidden="true">→</span>
@@ -547,7 +570,8 @@ function Servicos() {
 }
 
 function Faq() {
-  const faqs = [
+  const { faqHome } = useSiteContent();
+  const faqsFallback = [
     {
       q: 'Nunca treinei na vida. Consigo começar?',
       a: 'Consegue — e começa do jeito certo: avaliação do seu nível, exercícios adaptados e execução acompanhada, presencial ou por vídeo.',
@@ -573,6 +597,7 @@ function Faq() {
       a: 'Simples: clica no botão abaixo, me chama no WhatsApp e a gente conversa sobre sua rotina e objetivo. De lá sai o seu plano.',
     },
   ];
+  const faqs = faqHome.length > 0 ? faqHome : faqsFallback;
   return (
     <section className="section" id="faq">
       <div className="container container-narrow">
