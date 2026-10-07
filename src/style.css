@@ -296,6 +296,36 @@ summary:focus-visible {
   color: rgba(250, 246, 241, 0.88);
 }
 
+/* marsala: seção Sobre (quebra de cor pedida pela Rita) */
+.section-marsala {
+  background: #7e3542;
+}
+
+.section-marsala h2,
+.section-marsala h3 {
+  color: var(--claro);
+}
+
+.section-marsala .eyebrow {
+  color: #f0c9c1;
+}
+
+.section-marsala .lead {
+  color: rgba(250, 246, 241, 0.9);
+}
+
+.section-marsala .text-link {
+  color: #f6ded9;
+}
+
+.section-marsala .sobre-fotos img {
+  border-color: #7e3542;
+}
+
+.section-marsala .sobre-galeria img {
+  box-shadow: 0 16px 40px rgba(46, 14, 20, 0.45);
+}
+
 .section-head {
   max-width: 640px;
   margin-bottom: clamp(36px, 5vw, 56px);
@@ -2224,6 +2254,43 @@ section[id] {
   margin-top: clamp(30px, 5vw, 48px);
 }
 
+/* depoimentos reais na página PV */
+.pv-depos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.pv-depo {
+  margin: 0;
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 22px 20px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.pv-depo-stars {
+  color: #c98a2e;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+}
+
+.pv-depo blockquote {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #3f342b;
+}
+
+.pv-depo figcaption {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8a7d71;
+}
+
 .pv-result-fotos img {
   width: 100%;
   border-radius: 12px;
@@ -2462,6 +2529,10 @@ section[id] {
 
   .pv-result-fotos {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pv-depos {
+    grid-template-columns: 1fr;
   }
 
   .pv-result-fotos img:nth-child(3) {

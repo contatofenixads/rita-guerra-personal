@@ -488,6 +488,35 @@ function PvResultados() {
           Antes e depois reais de alunas, publicados com autorização. Resultados variam de pessoa
           para pessoa — o que sustenta o progresso é a consistência.
         </p>
+        <div className="pv-depos">
+          <figure className="pv-depo">
+            <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
+            <blockquote>
+              “Acho tudo muito prático e fácil de entender… dá para perceber o cuidado e a atenção
+              que você tem na montagem de cada treino.”
+            </blockquote>
+            <figcaption>Aluna do Projeto</figcaption>
+          </figure>
+          <figure className="pv-depo">
+            <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
+            <blockquote>
+              “Tô amando os treinos! Tive retorno da nutricionista e, do que mais pediram, foi
+              braço — fiquei super feliz.”
+            </blockquote>
+            <figcaption>Aluna do Projeto</figcaption>
+          </figure>
+          <figure className="pv-depo">
+            <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
+            <blockquote>
+              “Eu detestava academia e agora tô começando a gostar… hoje consegui fazer tudo com
+              peso.”
+            </blockquote>
+            <figcaption>Aluna do Projeto</figcaption>
+          </figure>
+        </div>
+        <p className="pv-result-note">
+          Depoimentos reais, transcritos sem edição. Nomes publicados apenas com autorização.
+        </p>
       </div>
     </section>
   );

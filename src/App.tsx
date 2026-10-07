@@ -57,16 +57,19 @@ function Header({ salesMode = false }: { salesMode?: boolean }) {
 /* ---------- seções da HOME ---------- */
 
 function Hero() {
+  const { config } = useSiteContent();
   return (
     <section className="hero" id="topo">
-      <a className="verao-flag" href={hrefTo('projeto-verao')}>
-        <span className="verao-flag-tag">Novo</span>
-        <strong>PROJETO VERÃO</strong> — programa de entrada · conhecer agora
-        <span aria-hidden="true">{Icon.arrow}</span>
-      </a>
+      {config['verao.destaqueHome'] !== 'off' && (
+        <a className="verao-flag" href={hrefTo('projeto-verao')}>
+          <span className="verao-flag-tag">Novo</span>
+          <strong>PROJETO VERÃO</strong> — programa de entrada · conhecer agora
+          <span aria-hidden="true">{Icon.arrow}</span>
+        </a>
+      )}
       <div className="container hero-grid">
         <div className="hero-copy">
-          <Eyebrow>Personal trainer · presencial e online</Eyebrow>
+          <Eyebrow>Rita Guerra — Personal Trainer · especialista em treinamento feminino</Eyebrow>
           <h1>
             Treino com a sua cara,{' '}
             <em>
@@ -103,19 +106,19 @@ function Hero() {
 function Valor() {
   const itens = [
     {
-      ic: Icon.heart,
+      ic: Icon.chat,
       t: 'Nada de ficha de gaveta',
-      d: 'Seu treino nasce de uma conversa com você — sua rotina, seu histórico e o que você gosta (e odeia) de fazer.',
-    },
-    {
-      ic: Icon.video,
-      t: 'Execução acompanhada',
-      d: 'Cada exercício com vídeo de execução e correção de verdade. Você nunca treina no escuro.',
+      d: 'Seu treino nasce de uma conversa com você, onde vou avaliar sua rotina, seu histórico e o que gosta de fazer.',
     },
     {
       ic: Icon.adjust,
       t: 'O treino se adapta a você',
-      d: 'Semana cansada, viagem, dor que apareceu? O plano se ajusta à sua vida — e não o contrário.',
+      d: 'Semana cansada, viagem, dor que apareceu? O plano se ajusta à sua vida e não ao contrário.',
+    },
+    {
+      ic: Icon.heart,
+      t: 'Acompanhamento contínuo',
+      d: 'Aqui você terá todo o suporte que precisar para nunca se sentir sozinha e treinando "no escuro".',
     },
   ];
   return (
@@ -123,7 +126,13 @@ function Valor() {
       <div className="container">
         <div className="section-head">
           <Eyebrow>Por que diferente</Eyebrow>
-          <h2>Aqui o treino é sobre você, não sobre uma receita pronta.</h2>
+          <h2>
+            Aqui você não vai apenas emagrecer. Vai <em>amar o corpo que vê no espelho.</em>
+          </h2>
+          <p className="lead">
+            Aqui o treino é pensado para você conseguir definir o seu corpo, sem dietas malucas e
+            sem passar horas na academia, com um método eficiente e personalizado.
+          </p>
         </div>
         <div className="cards-3">
           {itens.map((i) => (
@@ -144,22 +153,22 @@ function ComoFunciona() {
     {
       n: '01',
       t: 'Conversa inicial',
-      d: 'Entendemos sua rotina, objetivo, histórico e preferências. Tudo começa pelo que você precisa — não por um modelo pronto.',
+      d: 'Aqui eu entendo seus objetivos, sua rotina e suas preferências. Tudo começa pelo que você precisa e não por uma ficha pronta.',
     },
     {
       n: '02',
-      t: 'Treino no aplicativo',
-      d: 'Você recebe o treino organizado, com vídeo de cada exercício. Nada de ficha de papel nem "como era mesmo esse aparelho?".',
+      t: 'Estratégia personalizada',
+      d: 'A partir disso, estruturo seu treino de acordo com seus objetivos, nível de experiência e rotina, escolhendo exercícios, volume e frequência que façam sentido para você.',
     },
     {
       n: '03',
-      t: 'Você treina, eu acompanho',
-      d: 'Treina quando puder, no ambiente que tiver. Dúvidas e execução vão direto para mim — corrijo e ajusto.',
+      t: 'Hora de colocar em prática',
+      d: 'Você começa a treinar sabendo o que fazer e como fazer. Meu papel é garantir que o treino não fique apenas no papel, mas seja executado da maneira certa.',
     },
     {
       n: '04',
-      t: 'Evolução contínua',
-      d: 'Conforme você evolui, o treino evolui junto. Constância não é nunca falhar: é sempre continuar de onde parou.',
+      t: 'Acompanhamento e evolução',
+      d: 'Seu treino não fica parado no tempo. Acompanho sua evolução e, conforme você avança, ajustamos o que for necessário para continuar progredindo.',
     },
   ];
   return (
@@ -167,7 +176,7 @@ function ComoFunciona() {
       <div className="container">
         <div className="section-head">
           <Eyebrow>Como funciona</Eyebrow>
-          <h2>Um processo simples, do primeiro contato ao primeiro resultado.</h2>
+          <h2>Um processo simples do primeiro contato ao primeiro resultado</h2>
         </div>
         <ol className="passos">
           {passos.map((p) => (
@@ -183,6 +192,7 @@ function ComoFunciona() {
             <CtaPrimary href="#contato">Começar pela conversa inicial</CtaPrimary>
           </div>
           <MiniDepo quote="Tudo muito prático e fácil de entender, principalmente os vídeos de como realizar cada exercício." />
+          <MiniDepo quote="Adoro a diversidade e adoro não ser subestimada por você. Sempre que observava alguma dificuldade, você estudava para resolvê-la." />
         </div>
       </div>
     </section>
@@ -191,11 +201,26 @@ function ComoFunciona() {
 
 function ParaQuemE() {
   const itens = [
-    { t: 'Já tentou treinar sozinha e não conseguiu manter', d: 'O problema não foi você — foi um treino que não considerou a sua vida. Aqui ele se adapta à sua semana.' },
-    { t: 'Tem medo ou insegurança com academia', d: 'Começamos do seu nível, no seu ritmo. Ninguém nasce sabendo — e você sempre terá alguém explicando.' },
-    { t: 'Tem rotina imprevisível', d: 'Treinos organizados por sessão, não por dia da semana. Faltou hoje? Continua de onde parou, sem recomeçar do zero.' },
-    { t: 'Não quer treino genérico de internet', d: 'Seu treino nasce de uma conversa e evolui com seus resultados. Exercício que você não gosta pode ser substituído.' },
-    { t: 'Quer ser levada a sério', d: 'Aqui ninguém é subestimada. Você treina forte na medida certa, com execução acompanhada.' },
+    {
+      t: 'Já tentou treinar sozinha e não conseguiu manter',
+      d: 'O problema não foi você, foi um treino que não considerou a sua vida. O treino se adapta à sua rotina.',
+    },
+    {
+      t: 'Tem medo ou insegurança com academia',
+      d: 'Começamos no seu ritmo, no seu nível. Ninguém nasce sabendo e eu estou aqui para te passar essa segurança.',
+    },
+    {
+      t: 'Tem rotina imprevisível',
+      d: 'Treinos organizados por sessão e não por dia da semana. Faltou hoje? Continua de onde parou sem recomeçar do zero.',
+    },
+    {
+      t: 'Não quer treino genérico de internet',
+      d: 'Seu treino nasce de uma conversa e evolui com seus resultados.',
+    },
+    {
+      t: 'Quer ser levada a sério',
+      d: 'Aqui ninguém é subestimada. Você treina forte na medida certa, com segurança e acompanhamento.',
+    },
   ];
   return (
     <section className="section">
@@ -203,16 +228,10 @@ function ParaQuemE() {
         <div className="section-head">
           <Eyebrow>Para quem é</Eyebrow>
           <h2>
-            Feito para você que <em>quer voltar a treinar</em> — sem recomeçar sempre do zero.
+            Feito para você que quer ter <em>constância na academia</em> sem ficar sempre
+            recomeçando do zero.
           </h2>
-          <p className="lead">
-            Se você se identificou com pelo menos um desses pontos, o acompanhamento foi desenhado
-            exatamente para o seu caso.
-          </p>
           <MiniDepo quote="Desde que comecei, seu trabalho tem sido impecável. Ouve e acolhe as nossas necessidades e respeita as limitações." />
-          <div className="section-cta">
-            <CtaWhats label="Me contar meu caso" />
-          </div>
         </div>
         <ul className="check-list">
           {itens.map((i) => (
@@ -224,6 +243,11 @@ function ParaQuemE() {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="container">
+        <div className="section-cta" style={{ textAlign: 'center' }}>
+          <CtaWhats label="Me contar meu caso" />
+        </div>
       </div>
     </section>
   );
@@ -287,10 +311,10 @@ function Resultados() {
       <div className="container">
         <div className="section-head">
           <Eyebrow>Resultados</Eyebrow>
-          <h2>Progresso que as próprias alunas contam.</h2>
+          <h2>Resultados reais.</h2>
           <p className="lead">
-            Antes e depois reais, publicados com autorização das alunas. Cada corpo responde no seu
-            tempo — o que não muda é o cuidado com o processo.
+            Resultados de mulheres que confiaram no meu método e hoje se sentem mais seguras,
+            saudáveis e felizes com o próprio corpo.
           </p>
         </div>
         <Marquee duration="65s" className="res-marquee" label="Resultados de alunas">
@@ -368,7 +392,7 @@ function Sobre() {
     { src: detalheGarrafa, alt: 'Garrafa de água personalizada com o nome Rita Guerra' },
   ];
   return (
-    <section className="section section-sand" id="sobre">
+    <section className="section section-marsala" id="sobre">
       <div className="container split">
         <div className="sobre-media">
           <img src={ritaSobre} alt="Rita Guerra sorrindo para a câmera" loading="lazy" decoding="async" />
@@ -384,11 +408,11 @@ function Sobre() {
           <p className="lead">
             Sou personal trainer e, na prática, um pouco mais que isso: sou quem corrige o exercício
             antes de virar lesão, quem ajusta o treino quando sua semana desanda, e quem comemora
-            cada evolução com você — mesmo as que você ainda não percebeu.
+            cada evolução com você, mesmo as que você ainda não percebeu.
           </p>
           <p className="lead">
             Trabalho com treino individualizado presencial e online, sempre com o mesmo princípio:
-            método no lugar de achismo, e pessoas no lugar de fichas.
+            entender você primeiro, para depois pensar no seu treino.
           </p>
           <a className="text-link" href="#contato">
             Vamos treinar juntas? <span aria-hidden="true">{Icon.arrow}</span>
@@ -627,8 +651,8 @@ function CtaFinal() {
       <div className="container container-narrow cta-final">
         <h2>Sua próxima semana de treino pode ser diferente desta.</h2>
         <p>
-          Sem pacote de 12 meses, sem promessa impossível. Uma conversa honesta sobre onde você está
-          — e um treino que respeite onde você quer chegar.
+          Sem promessa impossível. Uma conversa honesta sobre onde você está — e um treino que
+          respeite onde você quer chegar.
         </p>
         <div className="hero-ctas cta-center">
           <CtaWhats label="Quero conversar com a Rita" />
