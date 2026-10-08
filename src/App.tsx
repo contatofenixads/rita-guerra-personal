@@ -225,7 +225,6 @@ function ParaQuemE() {
             Feito para você que quer ter <em>constância na academia</em> sem ficar sempre
             recomeçando do zero.
           </h2>
-          <MiniDepo quote="Desde que comecei, seu trabalho tem sido impecável. Ouve e acolhe as nossas necessidades e respeita as limitações." />
         </div>
         <ul className="check-list">
           {itens.map((i) => (
@@ -239,8 +238,8 @@ function ParaQuemE() {
         </ul>
       </div>
       <div className="container">
-        <div className="section-cta" style={{ textAlign: 'center' }}>
-          <CtaWhats label="Me contar meu caso" />
+        <div className="com-funciona-fecho">
+          <MiniDepo quote="Desde que comecei, seu trabalho tem sido impecável. Ouve e acolhe as nossas necessidades e respeita as limitações." />
         </div>
       </div>
     </section>
@@ -569,6 +568,49 @@ function Servicos() {
   );
 }
 
+function ProjetoVeraoHome() {
+  const entregas = [
+    'Treinos completos para você fazer na semana',
+    'Orientação de cardio',
+    '90 dias de programa',
+    'Vídeos das execuções dos exercícios',
+    'Metas para você bater por dia de alimentação',
+  ];
+  return (
+    <section className="section section-sand" id="projeto-verao-home">
+      <div className="container">
+        <div className="section-head">
+          <Eyebrow>Projeto Verão</Eyebrow>
+          <h2>
+            PROJETO VERÃO — <em>um programa pronto de 90 dias.</em>
+          </h2>
+          <p className="lead">
+            Sem consultoria individual e sem enrolação: você recebe o material completo, organizado
+            e começa a treinar no seu ritmo, com tudo o que precisa em mãos.
+          </p>
+        </div>
+        <ul className="check-list">
+          {entregas.map((e) => (
+            <li key={e}>
+              <span className="check-ic">{Icon.check}</span>
+              <div>
+                <strong>{e}.</strong>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="com-funciona-fecho pv-home-depos">
+          <MiniDepo quote="Você é muito atenciosa e muito gentil, eu estou amando e nem comecei." />
+          <MiniDepo quote="Eu tô vendo muito resultado com os treinos. Meu bumbum tá crescendo." />
+        </div>
+        <div className="section-cta" style={{ textAlign: 'center' }}>
+          <CtaPrimary href={hrefTo('projeto-verao')}>Quero conhecer o Projeto Verão</CtaPrimary>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Faq() {
   const { faqHome } = useSiteContent();
   const faqsFallback = [
@@ -726,6 +768,7 @@ function Home() {
         <Sobre />
         <Metodo />
         <Servicos />
+        <ProjetoVeraoHome />
         <Faq />
         <CtaFinal />
       </main>
