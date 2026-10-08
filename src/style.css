@@ -619,8 +619,92 @@ summary:focus-visible {
   }
 }
 
+/* ---------- carrossel manual (resultados e depoimentos) ---------- */
+
+.carousel {
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.carousel-track img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--borda);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--carmim-escuro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.carousel-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.carousel-btn--prev {
+  left: -22px;
+}
+
+.carousel-btn--next {
+  right: -22px;
+}
+
+.carousel-btn--prev svg {
+  transform: rotate(180deg);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* touch: sem setas — a navegação é pelo gesto de arrastar */
+@media (hover: none), (pointer: coarse) {
+  .carousel-btn {
+    display: none;
+  }
+
+  .carousel-track {
+    cursor: auto;
+  }
+}
+
 .dep-card {
-  flex: 0 0 min(360px, 84vw);
+  flex: 0 0 calc((100% - 40px) / 3);
   scroll-snap-align: start;
   margin: 0;
   background: #fff;
@@ -1340,7 +1424,7 @@ summary:focus-visible {
 }
 
 .res-card {
-  flex: 0 0 min(300px, 72vw);
+  flex: 0 0 calc((100% - 40px) / 3);
   scroll-snap-align: start;
   margin: 0;
   background: var(--cafe-suave);
@@ -2888,5 +2972,26 @@ section[id] {
 
   .verao-banner:hover {
     transform: none;
+  }
+}
+
+/* ---------- carrossel manual: larguras responsivas ---------- */
+
+/* tablet: 2 cards visíveis */
+@media (max-width: 1024px) {
+  .dep-card,
+  .res-card {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+}
+
+/* celular: 1 card + borda do próximo visível */
+@media (max-width: 640px) {
+  .dep-card {
+    flex-basis: 82%;
+  }
+
+  .res-card {
+    flex-basis: 78%;
   }
 }

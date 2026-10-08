@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO, VERAO } from './config';
-import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Marquee, useRoute, hrefTo } from './ui';
+import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Carousel, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
 import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
@@ -310,14 +310,14 @@ function Resultados() {
             saudáveis e felizes com o próprio corpo.
           </p>
         </div>
-        <Marquee duration="65s" className="res-marquee" label="Resultados de alunas">
+        <Carousel className="res-marquee" label="Resultados de alunas">
           {lista.map((r) => (
             <figure className={`res-card${r.story ? ' res-card-story' : ''}`} role="listitem" key={r.cap}>
               <img src={r.img} alt={r.alt} loading="lazy" decoding="async" />
               <figcaption>{r.cap}</figcaption>
             </figure>
           ))}
-        </Marquee>
+        </Carousel>
         <div className="stats">
           {relatos.map((r) => (
             <div className="stat" key={r.n}>
@@ -351,7 +351,7 @@ function Depoimentos() {
           <h2>Elas chegaram com a mesma dúvida que você.</h2>
           <p className="lead">Mensagens reais das alunas — sem edição de texto.</p>
         </div>
-        <Marquee duration="75s" label="Depoimentos de alunas">
+        <Carousel label="Depoimentos de alunas">
           {deps.map((d, i) => (
             <figure className="dep-card" role="listitem" key={i}>
               <span className="dep-stars" aria-hidden="true">
@@ -365,7 +365,7 @@ function Depoimentos() {
               <figcaption>{d.who || 'Aluna do acompanhamento'}</figcaption>
             </figure>
           ))}
-        </Marquee>
+        </Carousel>
         <p className="dep-note">
           Nomes e fotos das alunas são publicados apenas com autorização de cada uma. As citações
           acima são transcrições de mensagens reais recebidas pela Rita.
