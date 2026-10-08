@@ -306,6 +306,10 @@ summary:focus-visible {
   color: var(--claro);
 }
 
+.section-marsala h2 em {
+  color: #f5cfc7;
+}
+
 .section-marsala .eyebrow {
   color: #f0c9c1;
 }
@@ -659,7 +663,7 @@ summary:focus-visible {
 /* ---------- sobre ---------- */
 
 .sobre-media img:first-child {
-  width: 88%;
+  width: 100%;
   border-radius: var(--raio);
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -2647,7 +2651,7 @@ section[id] {
   width: 52%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 12%;
+  object-position: 68% 28%;
 }
 
 .verao-banner-shade {

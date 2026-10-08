@@ -5,15 +5,8 @@ import ProjetoVerao from './ProjetoVerao';
 import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
-import heroImg from './assets/hero.jpg';
-import treino1 from './assets/treino-1.jpg';
-import treino2 from './assets/treino-2.jpg';
+import heroImg from './assets/rita-escadaria.jpg';
 import ritaSobre from './assets/rita-sobre.jpg';
-import ritaEscadaria from './assets/rita-escadaria.jpg';
-import detalheGarrafa from './assets/detalhe-garrafa.jpg';
-import detalheWatch from './assets/detalhe-watch.jpg';
-import ritaOlhar from './assets/rita-olhar.jpg';
-import ritaRiso from './assets/rita-riso.jpg';
 import antesDepois1 from './assets/antes-depois-1.jpg';
 import antesDepois2 from './assets/antes-depois-2.jpg';
 import antesDepois3 from './assets/antes-depois-3.jpg';
@@ -95,7 +88,7 @@ function Hero() {
         <div className="hero-media">
           <img
             src={heroImg}
-            alt="Rita Guerra, personal trainer, agachada em parque urbano com roupa off-white"
+            alt="Rita Guerra, personal trainer, em ensaio profissional sentada em escadaria"
             fetchPriority="high"
           />
         </div>
@@ -384,22 +377,11 @@ function Depoimentos() {
 }
 
 function Sobre() {
-  const galeria = [
-    { src: ritaEscadaria, alt: 'Rita Guerra em bastidor, sentada em uma escadaria' },
-    { src: ritaOlhar, alt: 'Rita Guerra olhando para a câmera' },
-    { src: ritaRiso, alt: 'Rita Guerra rindo' },
-    { src: treino1, alt: 'Rita Guerra alongando os braços em parque urbano' },
-    { src: treino2, alt: 'Rita Guerra em pose de alongamento ao ar livre' },
-    { src: detalheGarrafa, alt: 'Garrafa de água personalizada com o nome Rita Guerra' },
-  ];
   return (
     <section className="section section-marsala" id="sobre">
       <div className="container split">
         <div className="sobre-media">
           <img src={ritaSobre} alt="Rita Guerra sorrindo para a câmera" loading="lazy" decoding="async" />
-          <div className="sobre-fotos" aria-hidden="true">
-            <img src={detalheWatch} alt="" loading="lazy" decoding="async" />
-          </div>
         </div>
         <div className="section-head">
           <Eyebrow>Sobre a Rita</Eyebrow>
@@ -418,13 +400,6 @@ function Sobre() {
           <a className="text-link" href="#contato">
             Vamos treinar juntas? <span aria-hidden="true">{Icon.arrow}</span>
           </a>
-        </div>
-      </div>
-      <div className="container">
-        <div className="sobre-galeria" aria-label="Galeria de fotos da Rita">
-          {galeria.map((g) => (
-            <img key={g.src} src={g.src} alt={g.alt} loading="lazy" decoding="async" />
-          ))}
         </div>
       </div>
     </section>
