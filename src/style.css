@@ -1647,6 +1647,14 @@ section[id] {
   scroll-margin-top: 84px;
 }
 
+/* nitidez global das imagens da página */
+.pv-page img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
 /* ---------- header ---------- */
 
 .pv-header {
