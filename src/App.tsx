@@ -21,6 +21,7 @@ import antesDepois4 from './assets/antes-depois-4.jpg';
 import resultadoGluteo from './assets/resultado-gluteo.jpg';
 import resultado3Meses from './assets/resultado-3meses.jpg';
 import pvHeroPraia from './assets/pv-hero-praia.jpg';
+import pvBannerHome from './assets/pv-banner-home.jpg';
 
 /* ---------- cabeçalho ---------- */
 
@@ -531,7 +532,7 @@ function Servicos() {
           <div className="verao-banner-media">
             <img
               className="verao-banner-foto"
-              src={pvHeroPraia}
+              src={pvBannerHome}
               alt="Rita Guerra na praia, de bikini, em dia de sol"
               loading="lazy"
               decoding="async"
