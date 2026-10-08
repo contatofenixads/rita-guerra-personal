@@ -1753,7 +1753,7 @@ section[id] {
 
 .pv-hero {
   position: relative;
-  min-height: clamp(540px, 82vh, 760px);
+  min-height: clamp(520px, 82vh, 760px);
   display: flex;
   align-items: flex-start;
   overflow: hidden;
@@ -1773,8 +1773,8 @@ section[id] {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(21, 58, 88, 0.5) 0%, rgba(21, 58, 88, 0.18) 38%, rgba(21, 58, 88, 0) 62%),
-    linear-gradient(to top, rgba(20, 45, 66, 0.35) 0%, rgba(20, 45, 66, 0) 30%);
+    linear-gradient(to right, rgba(21, 58, 88, 0.62) 0%, rgba(21, 58, 88, 0.25) 40%, rgba(21, 58, 88, 0) 70%),
+    linear-gradient(to bottom, rgba(21, 58, 88, 0.45) 0%, rgba(21, 58, 88, 0.1) 40%, rgba(20, 45, 66, 0.45) 100%);
 }
 
 .pv-hero-inner {
@@ -2432,15 +2432,22 @@ section[id] {
   }
 
   .pv-hero {
-    min-height: clamp(500px, 88vh, 680px);
+    min-height: clamp(480px, 88vh, 680px);
   }
 
   .pv-hero-bg {
-    object-position: 50% 22%;
+    object-position: 72% 22%;
   }
 
   .pv-hero-inner {
     padding-top: calc(88px + 24px);
+    align-items: flex-start;
+  }
+
+  .pv-hero-copy {
+    text-align: left;
+    margin-left: 0;
+    max-width: 52%;
   }
 
   .pv-faixa-grid {
@@ -2493,6 +2500,29 @@ section[id] {
 }
 
 @media (max-width: 640px) {
+  .pv-hero {
+    min-height: 0;
+    padding-bottom: clamp(340px, 95vw, 460px);
+  }
+
+  .pv-hero-bg {
+    object-position: 62% 0;
+  }
+
+  .pv-hero-inner {
+    padding-top: 92px;
+    padding-bottom: 24px;
+  }
+
+  .pv-hero-copy {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .pv-hero-title {
+    padding-right: 46px;
+  }
+
   .pv-logo img {
     height: 34px;
   }
