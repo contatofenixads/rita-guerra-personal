@@ -1,24 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO, VERAO } from './config';
 import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Carousel, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
 import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
-import heroImg from './assets/rita-escadaria.jpg';
+import heroImg from './assets/rita-hero-escada.jpg';
 import ritaSobre from './assets/rita-sobre.jpg';
-import antesDepois1 from './assets/antes-depois-1.jpg';
-import antesDepois2 from './assets/antes-depois-2.jpg';
-import antesDepois3 from './assets/antes-depois-3.jpg';
-import antesDepois4 from './assets/antes-depois-4.jpg';
-import resultadoGluteo from './assets/resultado-gluteo.jpg';
-import resultado3Meses from './assets/resultado-3meses.jpg';
+import resultado1 from './assets/resultados/resultado-01.png';
+import resultado2 from './assets/resultados/resultado-02.jpg';
+import resultado3 from './assets/resultados/resultado-03.jpg';
+import resultado4 from './assets/resultados/resultado-04.png';
+import resultado5 from './assets/resultados/resultado-05.jpg';
+import resultado6 from './assets/resultados/resultado-06.jpg';
+import resultado7 from './assets/resultados/resultado-07.jpg';
+import resultado8 from './assets/resultados/resultado-08.jpg';
 import pvHeroPraia from './assets/pv-hero-praia.jpg';
 import pvBannerHome from './assets/pv-banner-home.jpg';
 
 /* ---------- cabeçalho ---------- */
 
 function Header({ salesMode = false }: { salesMode?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
   return (
     <header className="site-header">
       <div className="container header-inner">
@@ -26,20 +30,34 @@ function Header({ salesMode = false }: { salesMode?: boolean }) {
           <img src={logoHeader} alt="Rita Guerra — Personal Trainer" />
         </a>
         {!salesMode && (
-          <nav className="header-nav" aria-label="Navegação principal">
-            <a href="#como-funciona">Como funciona</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#resultados">Resultados</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#faq">FAQ</a>
-          </nav>
+          <>
+            <nav className={`header-nav${open ? ' header-nav--open' : ''}`} aria-label="Navegação principal">
+              <a href="#como-funciona" onClick={close}>Como funciona</a>
+              <a href="#servicos" onClick={close}>Serviços</a>
+              <a href="#resultados" onClick={close}>Resultados</a>
+              <a href="#sobre" onClick={close}>Sobre</a>
+              <a href="#faq" onClick={close}>FAQ</a>
+              <a className="btn btn-primary btn-sm mobile-cta" href="#contato" onClick={close}>
+                Agendar conversa
+              </a>
+            </nav>
+            <button
+              type="button"
+              className="menu-toggle"
+              aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? Icon.close : Icon.menu}
+            </button>
+          </>
         )}
         {salesMode ? (
           <a className="btn btn-whats btn-sm" href={hrefTo('')}>
             {Icon.arrow} Voltar ao site
           </a>
         ) : (
-          <a className="btn btn-primary btn-sm" href="#contato">
+          <a className="btn btn-primary btn-sm desktop-cta" href="#contato">
             Agendar conversa
           </a>
         )}
@@ -53,7 +71,14 @@ function Header({ salesMode = false }: { salesMode?: boolean }) {
 function Hero() {
   const { config } = useSiteContent();
   return (
-    <section className="hero" id="topo">
+    <section className="hero hero-bg" id="topo">
+      <img
+        className="hero-bg-foto"
+        src={heroImg}
+        alt="Rita Guerra, personal trainer, sentada em escadaria"
+        fetchPriority="high"
+      />
+      <div className="hero-bg-shade" aria-hidden="true" />
       {config['verao.destaqueHome'] !== 'off' && (
         <a className="verao-flag" href={hrefTo('projeto-verao')}>
           <span className="verao-flag-tag">Novo</span>
@@ -65,16 +90,18 @@ function Hero() {
         <div className="hero-copy">
           <Eyebrow>Rita Guerra — Personal Trainer · especialista em treinamento feminino</Eyebrow>
           <h1>
-            Treino com a sua cara,{' '}
+            Seu jeito de treinar,{' '}
             <em>
-              acompanhamento
+              meu jeito de cuidar
               <br />
-              com a minha.
+              de cada detalhe.
             </em>
           </h1>
           <p className="hero-sub">
-            Sou Rita Guerra. Monto treinos que respeitam a sua rotina, o seu nível e o que você gosta
-            de fazer — e acompanho de perto cada evolução, de verdade.
+            Oi, eu sou a Rita Guerra! Meu trabalho é prescrever treinos que façam sentido para você,
+            respeitando sua rotina, seus objetivos e até os exercícios que você mais gosta de fazer.
+            E, claro, estar pertinho para acompanhar sua evolução e fazer os ajustes necessários ao
+            longo do caminho.
           </p>
           <div className="hero-ctas">
             <CtaPrimary href="#servicos">Quero conhecer o acompanhamento</CtaPrimary>
@@ -84,13 +111,6 @@ function Hero() {
             {CREF ? `CREF ${CREF} · ` : ''}
             Atendimento presencial e online · Treino no app com vídeos de execução
           </p>
-        </div>
-        <div className="hero-media">
-          <img
-            src={heroImg}
-            alt="Rita Guerra, personal trainer, em ensaio profissional sentada em escadaria"
-            fetchPriority="high"
-          />
         </div>
       </div>
     </section>
@@ -246,53 +266,18 @@ function ParaQuemE() {
   );
 }
 
-const IMAGEM_REFS: Record<string, string> = {
-  'antes-depois-1': antesDepois1,
-  'antes-depois-2': antesDepois2,
-  'antes-depois-3': antesDepois3,
-  'antes-depois-4': antesDepois4,
-  'resultado-gluteo': resultadoGluteo,
-  'resultado-3meses': resultado3Meses,
-};
+const RESULTADOS_IMAGENS = [
+  { img: resultado1, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado2, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado3, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado4, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado5, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado6, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado7, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+  { img: resultado8, alt: 'Montagem de comparação antes e depois de aluna da Rita Guerra' },
+];
 
 function Resultados() {
-  const { resultados } = useSiteContent();
-  const resultadosFallback = [
-    {
-      img: antesDepois1,
-      alt: 'Comparação antes e depois de aluna da Rita Guerra, vista lateral, após três meses de acompanhamento',
-      cap: '3 meses de acompanhamento: “TRÊS MESES E OLHEM ESSE RESULTADO!! Tudo isso apenas com os treinos, sem grandes mudanças na alimentação.”',
-    },
-    {
-      img: antesDepois2,
-      alt: 'Antes e depois de aluna em mesma roupa e local, com evolução visível na definição abdominal',
-      cap: 'Mesma roupa, mesmo local — evolução de definição no acompanhamento.',
-    },
-    {
-      img: antesDepois3,
-      alt: 'Antes e depois de aluna de corpo inteiro na academia, com progressão evidente',
-      cap: 'Progresso da aluna no acompanhamento.',
-    },
-    {
-      img: antesDepois4,
-      alt: 'Antes e depois de aluna com mudança forte de contorno corporal',
-      cap: 'Progresso da aluna no acompanhamento.',
-    },
-    {
-      img: resultadoGluteo,
-      alt: 'Publicação da Rita mostrando evolução de bumbum de aluna em três tempos: antes, um mês e três meses',
-      cap: '“O objetivo dela era levantar o bumbum — diferença já no primeiro mês.” — Rita',
-      story: true,
-    },
-  ];
-  const lista: { img: string; alt: string; cap: string; story?: boolean }[] =
-    resultados.length > 0
-      ? resultados.map((r) => ({
-          img: IMAGEM_REFS[r.imagemRef] ?? antesDepois1,
-          alt: r.alt,
-          cap: r.legenda,
-        }))
-      : resultadosFallback;
   const relatos = [
     { n: '-10 kg', d: '“Bati -10kg essa semana… OLHA ESSE OMBRO. A MÃE ESTÁ MAROMBA.” — relato de aluna' },
     { n: '1 mês', d: '“O objetivo dela era levantar o bumbum — diferença já no primeiro mês.” — Rita' },
@@ -311,10 +296,9 @@ function Resultados() {
           </p>
         </div>
         <Carousel className="res-marquee" label="Resultados de alunas">
-          {lista.map((r) => (
-            <figure className={`res-card${r.story ? ' res-card-story' : ''}`} role="listitem" key={r.cap}>
+          {RESULTADOS_IMAGENS.map((r, i) => (
+            <figure className="res-card" role="listitem" key={i}>
               <img src={r.img} alt={r.alt} loading="lazy" decoding="async" />
-              <figcaption>{r.cap}</figcaption>
             </figure>
           ))}
         </Carousel>
@@ -400,51 +384,6 @@ function Sobre() {
             Vamos treinar juntas? <span aria-hidden="true">{Icon.arrow}</span>
           </a>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Metodo() {
-  const pilares = [
-    {
-      ic: Icon.chat,
-      t: 'Individualização',
-      d: 'Treino desenhado a partir da sua rotina, nível e preferências. O conteúdo é seu — do aquecimento ao último exercício.',
-    },
-    {
-      ic: Icon.check,
-      t: 'Execução antes de carga',
-      d: 'Movimento bem feito vem primeiro. Vídeo de cada exercício e correção constante para evoluir com segurança.',
-    },
-    {
-      ic: Icon.adjust,
-      t: 'Adaptação à vida real',
-      d: 'Viagem, semana puxada, equipamento limitado: o treino se reorganiza para você não parar. Faltar não vira desistir.',
-    },
-    {
-      ic: Icon.chart,
-      t: 'Acompanhamento próximo',
-      d: 'Sua evolução é monitorada de perto e o treino avança quando você está pronta — com ajustes sempre que necessário.',
-    },
-  ];
-  return (
-    <section className="section" id="metodo">
-      <div className="container">
-        <div className="section-head">
-          <Eyebrow>Método</Eyebrow>
-          <h2>Quatro princípios que sustentam todo treino que eu monto.</h2>
-        </div>
-        <div className="cards-2x2">
-          {pilares.map((p) => (
-            <article className="card" key={p.t}>
-              <span className="card-ic">{p.ic}</span>
-              <h3>{p.t}</h3>
-              <p>{p.d}</p>
-            </article>
-          ))}
-        </div>
-        <MiniDepo quote="Adoro a diversidade e adoro não ser subestimada por você." />
       </div>
     </section>
   );
@@ -612,34 +551,35 @@ function ProjetoVeraoHome() {
 }
 
 function Faq() {
-  const { faqHome } = useSiteContent();
-  const faqsFallback = [
+  /* Etapa 4: textos oficiais do FAQ da home. As linhas antigas do banco
+     (faq_itens/page=home) não puderam ser atualizadas por RLS (sem service
+     role), então a lista estática abaixo prevalece. */
+  const faqs = [
     {
-      q: 'Nunca treinei na vida. Consigo começar?',
-      a: 'Consegue — e começa do jeito certo: avaliação do seu nível, exercícios adaptados e execução acompanhada, presencial ou por vídeo.',
+      q: 'Nunca treinei na vida, consigo começar?',
+      a: 'Claro que sim! Não precisa ter experiência nenhuma para começar comigo. Vou montar seu treino de acordo com o seu nível, respeitando seus limites e fazendo com que você evolua aos pouquinhos, no seu ritmo.',
     },
     {
       q: 'Como funciona o acompanhamento online?',
-      a: 'Você recebe o treino no aplicativo com vídeo de cada exercício, treina quando puder e me envia sua execução e dúvidas. Eu corrijo, ajusto e evoluo o seu treino.',
+      a: 'Mesmo de longe, vou estar pertinho de você! Você recebe seus treinos personalizados e, no plano com acompanhamento, pode tirar suas dúvidas, me mandar vídeos dos exercícios e contar como estão sendo seus treinos. Assim, consigo acompanhar sua evolução e fazer ajustes sempre que necessário.',
     },
     {
-      q: 'E se eu faltar ou perder dias?',
-      a: 'O treino é organizado por sessão, não por data. Faltou? Continua de onde parou. Sem culpa, sem recomeço do zero.',
+      q: 'E se eu faltar ou perder alguns dias?',
+      a: 'Imprevistos acontecem, e tá tudo bem! A ideia é que o treino faça parte da sua rotina, e não que vire mais uma cobrança. Se precisar, a gente reorganiza os treinos para você continuar de onde parou.',
     },
     {
       q: 'Posso treinar em casa ou só na academia?',
-      a: 'O acompanhamento online funciona nos dois cenários: o treino é montado para o ambiente e o material que você tiver disponível.',
+      a: 'Nos dois! Vou montar seu treino pensando no lugar onde você pretende treinar e nos equipamentos que tem disponível. O importante é encontrar uma forma de treinar que funcione para você.',
     },
     {
       q: 'Quanto custa?',
-      a: 'Os valores dependem do formato e da frequência do acompanhamento — por isso são informados na conversa inicial, junto com tudo o que está incluído.',
+      a: 'Tenho diferentes opções de planos, tanto para quem quer apenas receber os treinos quanto para quem prefere um acompanhamento mais próximo. Você pode conhecer os valores e escolher o que faz mais sentido para você.',
     },
     {
       q: 'Como faço para começar?',
       a: 'Simples: clica no botão abaixo, me chama no WhatsApp e a gente conversa sobre sua rotina e objetivo. De lá sai o seu plano.',
     },
   ];
-  const faqs = faqHome.length > 0 ? faqHome : faqsFallback;
   return (
     <section className="section" id="faq">
       <div className="container container-narrow">
@@ -761,12 +701,11 @@ function Home() {
       <main>
         <Hero />
         <Valor />
-        <ComoFunciona />
-        <ParaQuemE />
         <Resultados />
         <Depoimentos />
+        <ComoFunciona />
+        <ParaQuemE />
         <Sobre />
-        <Metodo />
         <Servicos />
         <ProjetoVeraoHome />
         <Faq />

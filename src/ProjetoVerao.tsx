@@ -6,12 +6,7 @@ import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
 import pvHeroPraia from './assets/pv-hero-praia.jpg';
 import pvRecebe from './assets/pv-recebe.jpg';
-import pvMateriais from './assets/pv-materiais.jpg';
-import pvResultados from './assets/pv-resultados.jpg';
 import pvCta from './assets/pv-cta.jpg';
-import antesDepois1 from './assets/antes-depois-1.jpg';
-import antesDepois2 from './assets/antes-depois-2.jpg';
-import antesDepois4 from './assets/antes-depois-4.jpg';
 
 /* ============================================================
    PROJETO VERÃO — página de vendas (estilos próprios "pv-")
@@ -215,7 +210,6 @@ function PvHero() {
 function PvFaixa() {
   const itens = [
     { ic: PvIc.chart, l1: 'Treino', l2: 'estruturado' },
-    { ic: PvIc.target, l1: 'Progressão', l2: 'de carga' },
     { ic: PvIc.chat, l1: 'Orientações', l2: 'de cardio' },
     { ic: PvIc.clipboard, l1: 'Metas', l2: 'diárias' },
     { ic: PvIc.star, l1: '90 dias', l2: 'de programa' },
@@ -282,7 +276,7 @@ function PvReceber() {
         <div className="pv-receber-visual">
           <img
             src={pvRecebe}
-            alt="Material do Projeto Verão no tablet e em PDFs: capa, treino A e checklist diária"
+            alt="Projeto Verão no tablet, com os treinos A e B do protocolo em PDF"
             loading="lazy"
             decoding="async"
           />
@@ -427,95 +421,43 @@ function PvOrientacoes() {
   );
 }
 
-/* ---------- material organizado ---------- */
-
-function PvMaterial() {
-  return (
-    <section className="pv-section pv-bg-sand" id="material">
-      <div className="container">
-        <h2 className="pv-h2">
-          Material organizado e prático <span className="pv-h2-line" aria-hidden="true" />
-        </h2>
-        <img
-          className="pv-material-img"
-          src={pvMateriais}
-          alt="PDFs do Projeto Verão: treino A, orientações de cardio, metas da semana e checklist diária"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-    </section>
-  );
-}
-
-/* ---------- resultados reais ---------- */
+/* ---------- resultados / depoimentos ---------- */
 
 function PvResultados() {
-  const fotos = [
+  /* Depoimentos reais de alunas da Rita (prints autorizados nos materiais),
+     sobre os treinos — não atribuídos como resultados do Projeto Verão. */
+  const deps = [
     {
-      img: antesDepois1,
-      alt: 'Antes e depois de aluna da Rita Guerra após três meses de acompanhamento',
+      q: 'Eu detestava academia e agora tô começando a gostar. Mesmo cansada do trabalho intenso do dia, consegui passar por cima e dar o meu melhor.',
     },
-    { img: antesDepois2, alt: 'Antes e depois de aluna com evolução visível na definição' },
-    { img: antesDepois4, alt: 'Antes e depois de aluna com mudança de contorno corporal' },
+    {
+      q: 'Só dando um feedback: tô amando os treinos! Saio morta, hahaha.',
+    },
+    {
+      q: 'Não consigo achar defeito nas aulas, tá tudo perfeito.',
+    },
   ];
   return (
     <section className="pv-section pv-dark" id="resultados-pv">
-      <div className="container pv-result-split">
-        <div>
-          <h2 className="pv-h2 pv-h2-claro">Resultados reais vêm de consistência.</h2>
-          <p className="pv-lead pv-lead-claro">
-            O Projeto Verão te dá o direcionamento que você precisa para manter o foco, evoluir nos
-            treinos e chegar no final do ano com mais resultado.
-          </p>
-        </div>
-        <div className="pv-result-media">
-          <img
-            src={pvResultados}
-            alt="Detalhe das costas e ombros definidos de uma praticante de treino"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
-      <div className="container">
-        <div className="pv-result-fotos">
-          {fotos.map((f) => (
-            <img key={f.img} src={f.img} alt={f.alt} loading="lazy" decoding="async" />
+      <div className="container pv-narrow">
+        <h2 className="pv-h2 pv-h2-claro">Resultados reais vêm de consistência.</h2>
+        <p className="pv-lead pv-lead-claro">
+          O Projeto Verão te dá o direcionamento que você precisa para manter o foco, evoluir nos
+          treinos e chegar no final do ano com mais resultado.
+        </p>
+        <div className="pv-depos">
+          {deps.map((d, i) => (
+            <figure className="pv-depo" key={i}>
+              <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
+              <blockquote>“{d.q}”</blockquote>
+              <figcaption>Aluna da Rita</figcaption>
+            </figure>
           ))}
         </div>
         <p className="pv-result-note">
-          Antes e depois reais de alunas, publicados com autorização. Resultados variam de pessoa
-          para pessoa — o que sustenta o progresso é a consistência.
-        </p>
-        <div className="pv-depos">
-          <figure className="pv-depo">
-            <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
-            <blockquote>
-              “Acho tudo muito prático e fácil de entender… dá para perceber o cuidado e a atenção
-              que você tem na montagem de cada treino.”
-            </blockquote>
-            <figcaption>Aluna do Projeto</figcaption>
-          </figure>
-          <figure className="pv-depo">
-            <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
-            <blockquote>
-              “Tô amando os treinos! Tive retorno da nutricionista e, do que mais pediram, foi
-              braço — fiquei super feliz.”
-            </blockquote>
-            <figcaption>Aluna do Projeto</figcaption>
-          </figure>
-          <figure className="pv-depo">
-            <span className="pv-depo-stars" aria-hidden="true">★★★★★</span>
-            <blockquote>
-              “Eu detestava academia e agora tô começando a gostar… hoje consegui fazer tudo com
-              peso.”
-            </blockquote>
-            <figcaption>Aluna do Projeto</figcaption>
-          </figure>
-        </div>
-        <p className="pv-result-note">
-          Depoimentos reais, transcritos sem edição. Nomes publicados apenas com autorização.
+          Depoimentos reais de alunas do acompanhamento da Rita, transcritos sem edição. O Projeto
+          Verão é um programa novo — os relatos acima são sobre os treinos dela, não resultados
+          específicos deste produto.
         </p>
       </div>
     </section>
@@ -570,34 +512,37 @@ function PvInvestimento() {
 /* ---------- FAQ ---------- */
 
 function PvFaq() {
-  const { faqVerao } = useSiteContent();
-  const FALLBACK = [
+  /* Etapa 7: perguntas e respostas confirmadas pela Rita. As linhas antigas do
+     banco (faq_itens/page=verao) não puderam ser atualizadas por RLS (sem
+     service role), então a lista estática abaixo prevalece. */
+  const faqs: { q: string; a: string; nota?: string }[] = [
     {
-      q: 'Por quanto tempo terei acesso?',
-      a: 'O acesso é vitalício: você faz o pagamento uma única vez e o material fica disponível para você sempre.',
+      q: 'Por quanto tempo vou ter acesso ao Projeto Verão?',
+      a: 'O projeto foi pensado para você seguir durante 90 dias! E o melhor é que, como o material é em PDF, você pode salvar no celular e consultar sempre que quiser. Ele é vitalício!!',
     },
     {
       q: 'Preciso ter experiência para fazer o projeto?',
-      a: 'Não. O material inclui o guia de execução dos exercícios, com fotos e explicações, para você treinar com clareza desde o primeiro dia.',
+      a: 'Não precisa! Se você está começando agora, também pode participar. O importante é respeitar seus limites, começar com cargas adequadas e ir evoluindo aos pouquinhos, sem pressa.',
     },
     {
       q: 'Posso fazer em qualquer academia?',
-      a: 'Sim. O protocolo é entregue em PDF, pensado para treinos de academia — você segue o material onde treinar.',
+      a: 'Simm! Os treinos foram montados pensando nos equipamentos que você encontra na maioria das academias. Então não precisa de uma academia específica para seguir o projeto.',
     },
     {
-      q: 'E se eu não puder treinar 4x na semana?',
-      a: 'O protocolo foi montado em 4 treinos semanais (A, B, C e D), mas também funciona para quem treina 5x por semana — repetindo o Treino A no quinto dia. Como o material é seu, você organiza as sessões conforme a sua rotina.',
+      q: 'E se eu não conseguir treinar 4 vezes na semana?',
+      a: 'Não tem problema! O ideal é seguir os 4 treinos semanais para aproveitar o planejamento completo, mas eu sei que nem sempre a rotina permite. Se perder algum dia, é só retomar de onde parou, sem precisar compensar tudo de uma vez.',
     },
     {
-      q: 'Como recebo o material?',
-      a: 'Imediatamente após o pagamento, por e-mail e também na área de cliente.',
+      q: 'Como vou receber o material?',
+      a: 'Assim que sua compra for confirmada, você recebe acesso ao material digital em PDF, com os treinos, orientações e tudo o que precisa para começar. É só salvar no celular e levar com você para a academia!',
+      nota:
+        'Atenção interna: resposta ainda pendente de validação — a entrega via plataforma Greenn não está configurada nem validada. Não publicar como definitivo.',
     },
     {
       q: 'Para quem o Projeto Verão não é indicado?',
-      a: 'Para quem procura atalho ou promessa milagrosa. O projeto entrega estrutura, direcionamento e material completo — os resultados vêm da sua consistência nos treinos.',
+      a: 'Para quem procura atalho ou promessa milagrosa. O projeto entrega estrutura, direcionamento e material completo. Os resultados vêm da sua consistência nos treinos.',
     },
   ];
-  const faqs = faqVerao.length > 0 ? faqVerao : FALLBACK;
   return (
     <section className="pv-section pv-bg-sand" id="verao-faq">
       <div className="container pv-narrow">
@@ -612,6 +557,7 @@ function PvFaq() {
                 <span aria-hidden="true">+</span>
               </summary>
               <p>{f.a}</p>
+              {f.nota && <p className="pv-faq-nota">{f.nota}</p>}
             </details>
           ))}
         </div>
@@ -666,7 +612,6 @@ export default function ProjetoVerao() {
         <PvComoFunciona />
         <PvEstrutura />
         <PvOrientacoes />
-        <PvMaterial />
         <PvResultados />
         <PvInvestimento />
         <PvFaq />

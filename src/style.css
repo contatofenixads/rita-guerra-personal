@@ -400,6 +400,65 @@ summary:focus-visible {
   object-fit: cover;
 }
 
+/* hero com foto de fundo (composição como a abertura do Projeto Verão) */
+.hero-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-bg-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% 24%;
+}
+
+.hero-bg-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 246, 241, 0.95) 0%,
+    rgba(250, 246, 241, 0.85) 40%,
+    rgba(250, 246, 241, 0.3) 72%,
+    rgba(250, 246, 241, 0.05) 100%
+  );
+}
+
+.hero-bg .hero-grid {
+  grid-template-columns: minmax(0, 640px);
+}
+
+/* menu hambúrguer (mobile) */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  background: rgba(250, 246, 241, 0.92);
+  color: var(--cafe);
+  cursor: pointer;
+  position: relative;
+  z-index: 56;
+}
+
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-cta {
+  display: none;
+}
+
 /* ---------- cards ---------- */
 
 .cards-3 {
@@ -776,21 +835,6 @@ summary:focus-visible {
   border: 4px solid var(--areia-escura);
 }
 
-/* ---------- método: fotos ---------- */
-
-.metodo-fotos {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin-top: 48px;
-}
-
-.metodo-fotos img {
-  border-radius: 16px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
 /* ---------- serviços / planos ---------- */
 
 .planos {
@@ -956,6 +1000,16 @@ summary:focus-visible {
   font-size: 1rem;
 }
 
+/* nota de validação pendente (FAQ do Projeto Verão) */
+.pv-faq-nota {
+  margin: -12px 0 0;
+  padding-bottom: 20px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--carmim);
+}
+
 /* ---------- CTA final ---------- */
 
 .cta-section {
@@ -1065,10 +1119,6 @@ summary:focus-visible {
 
 .com-funciona-fecho .mini-depo {
   margin: 0;
-}
-
-#metodo .mini-depo {
-  margin-top: 40px;
 }
 
 /* ---------- bandeira e card do Projeto Verão (funil) ---------- */
@@ -1441,17 +1491,8 @@ summary:focus-visible {
   width: 100%;
   border-radius: 14px;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-.res-card-story img {
-  object-position: center 22%;
-}
-
-.res-card figcaption {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: rgba(250, 246, 241, 0.9);
+  object-fit: contain;
+  background: var(--cafe-suave);
 }
 
 /* ---------- sobre: galeria ---------- */
@@ -1570,8 +1611,62 @@ section[id] {
     gap: 28px;
   }
 
-  .header-nav {
+  /* CTA do cabeçalho vira ícone de menu (F06) */
+  .desktop-cta {
     display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 55;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(250, 246, 241, 0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borda);
+    padding: 84px 24px 24px;
+    box-shadow: 0 24px 48px rgba(36, 28, 22, 0.16);
+  }
+
+  .header-nav--open {
+    display: flex;
+  }
+
+  .header-nav a {
+    padding: 14px 4px;
+    font-size: 1.02rem;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .header-nav a:hover {
+    color: var(--carmim);
+  }
+
+  .mobile-cta {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 18px;
+    border-bottom: none !important;
+  }
+
+  /* hero com foto de fundo: véu vertical para legibilidade */
+  .hero-bg-foto {
+    object-position: 62% 18%;
+  }
+
+  .hero-bg-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(250, 246, 241, 0.92) 0%,
+      rgba(250, 246, 241, 0.78) 55%,
+      rgba(250, 246, 241, 0.94) 100%
+    );
   }
 
   .header-logo img {
@@ -1584,14 +1679,6 @@ section[id] {
 
   .passos-3 {
     grid-template-columns: 1fr;
-  }
-
-  .metodo-fotos {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .metodo-fotos img:nth-child(n + 4) {
-    display: none;
   }
 }
 
@@ -1614,10 +1701,6 @@ section[id] {
   .sobre-fotos {
     width: 100%;
     margin-top: 14px;
-  }
-
-  .metodo-fotos img:nth-child(n + 3) {
-    display: none;
   }
 
   /* barra fixa inferior */
@@ -1960,7 +2043,7 @@ section[id] {
 
 .pv-faixa-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 
@@ -2104,7 +2187,7 @@ section[id] {
   height: 13px;
 }
 
-/* ---------- receber: visual do material ---------- */
+/* ---------- receber: visual do produto (tablet) ---------- */
 
 .pv-receber-visual img {
   display: block;
@@ -2320,44 +2403,8 @@ section[id] {
   line-height: 1.5;
 }
 
-/* ---------- material ---------- */
+/* ---------- depoimentos na página PV ---------- */
 
-.pv-material-img {
-  display: block;
-  width: 100%;
-  max-width: 920px;
-  margin-inline: auto;
-  margin-top: 36px;
-  border-radius: 20px;
-  box-shadow: 0 18px 44px rgba(43, 30, 23, 0.16);
-}
-
-/* ---------- resultados ---------- */
-
-.pv-result-split {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(28px, 5vw, 56px);
-  align-items: center;
-}
-
-.pv-result-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 340px;
-  object-fit: cover;
-  border-radius: 24px;
-}
-
-.pv-result-fotos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: clamp(30px, 5vw, 48px);
-}
-
-/* depoimentos reais na página PV */
 .pv-depos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2392,14 +2439,6 @@ section[id] {
   font-size: 0.78rem;
   font-weight: 600;
   color: #6f6357;
-}
-
-.pv-result-fotos img {
-  width: 100%;
-  border-radius: 12px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border: 1px solid rgba(251, 243, 236, 0.18);
 }
 
 .pv-result-note {
@@ -2529,7 +2568,6 @@ section[id] {
 
 @media (max-width: 960px) {
   .pv-split,
-  .pv-result-split,
   .pv-invest {
     grid-template-columns: 1fr;
   }
@@ -2595,11 +2633,6 @@ section[id] {
   .pv-header-cta {
     display: none;
   }
-
-  .pv-result-media img {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-  }
 }
 
 @media (max-width: 640px) {
@@ -2609,7 +2642,7 @@ section[id] {
   }
 
   .pv-hero-bg {
-    object-position: 62% 0;
+    object-position: 73% 30%;
   }
 
   .pv-hero-inner {
@@ -2635,10 +2668,6 @@ section[id] {
     row-gap: 26px;
   }
 
-  .pv-faixa-grid .pv-faixa-item:last-child {
-    grid-column: 1 / -1;
-  }
-
   .pv-quem-grid {
     grid-template-columns: 1fr;
   }
@@ -2660,17 +2689,8 @@ section[id] {
     grid-column: 1 / -1;
   }
 
-  .pv-result-fotos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .pv-depos {
     grid-template-columns: 1fr;
-  }
-
-  .pv-result-fotos img:nth-child(3) {
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 10;
   }
 
   .pv-inclui {
