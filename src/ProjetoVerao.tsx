@@ -546,6 +546,18 @@ function PvInvestimento() {
               {acesso}
             </p>
           </div>
+          <ul className="pv-check-list pv-inclui">
+            {VERAO.incluso.map((item) => (
+              <li key={item}>
+                <span className="pv-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="pv-invest-cta">
           <PvBtn>Quero meu Projeto Verão</PvBtn>

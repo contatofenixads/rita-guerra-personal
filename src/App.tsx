@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { WHATSAPP_URL, INSTAGRAM_URL, CREF, SEO, VERAO } from './config';
 import { Icon, Eyebrow, CtaPrimary, CtaWhats, MiniDepo, Carousel, useRoute, hrefTo } from './ui';
 import ProjetoVerao from './ProjetoVerao';
@@ -19,9 +19,6 @@ import pvBannerHome from './assets/pv-banner-home.jpg';
 /* ---------- cabeçalho ---------- */
 
 function Header({ salesMode = false }: { salesMode?: boolean }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <header className="site-header">
       <div className="container header-inner">
@@ -29,14 +26,12 @@ function Header({ salesMode = false }: { salesMode?: boolean }) {
           <img src={logoHeader} alt="Rita Guerra — Personal Trainer" />
         </a>
         {!salesMode && (
-          <nav className={`header-nav${menuOpen ? ' is-open' : ''}`} aria-label="Navegação principal">
-            <a href="#servicos" onClick={closeMenu}>Serviços</a>
-            <a href="#resultados" onClick={closeMenu}>Resultados</a>
-            <a href="#como-funciona" onClick={closeMenu}>Como funciona</a>
-            <a href="#depoimentos" onClick={closeMenu}>Depoimentos</a>
-            <a href="#sobre" onClick={closeMenu}>Sobre</a>
-            <a href="#faq" onClick={closeMenu}>FAQ</a>
-            <a className="btn btn-primary btn-sm mobile-cta" href="#contato" onClick={closeMenu}>Agendar conversa</a>
+          <nav className="header-nav" aria-label="Navegação principal">
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#faq">FAQ</a>
           </nav>
         )}
         {salesMode ? (
@@ -44,22 +39,11 @@ function Header({ salesMode = false }: { salesMode?: boolean }) {
             {Icon.arrow} Voltar ao site
           </a>
         ) : (
-          <div className="header-actions">
-            <a className="btn btn-primary btn-sm desktop-cta" href="#contato">Agendar conversa</a>
-            <button
-              type="button"
-              className="menu-toggle"
-              onClick={() => setMenuOpen((v) => !v)}
-              aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-            >
-              {menuOpen ? Icon.close : Icon.menu}
-            </button>
-          </div>
+          <a className="btn btn-primary btn-sm" href="#contato">
+            Agendar conversa
+          </a>
         )}
       </div>
-      {menuOpen && !salesMode && <div className="menu-backdrop" onClick={closeMenu} aria-hidden="true" />}
     </header>
   );
 }
@@ -81,14 +65,16 @@ function Hero() {
         <div className="hero-copy">
           <Eyebrow>Rita Guerra — Personal Trainer · especialista em treinamento feminino</Eyebrow>
           <h1>
-            Seu jeito de treinar,{' '}
-            <em>meu jeito de cuidar de cada detalhe.</em>
+            Treino com a sua cara,{' '}
+            <em>
+              acompanhamento
+              <br />
+              com a minha.
+            </em>
           </h1>
           <p className="hero-sub">
-            Oi, eu sou a Rita Guerra! Meu trabalho é prescrever treinos que façam sentido para você,
-            respeitando sua rotina, seus objetivos e até os exercícios que você mais gosta de fazer.
-            E, claro, estar pertinho para acompanhar sua evolução e fazer os ajustes necessários ao
-            longo do caminho.
+            Sou Rita Guerra. Monto treinos que respeitam a sua rotina, o seu nível e o que você gosta
+            de fazer — e acompanho de perto cada evolução, de verdade.
           </p>
           <div className="hero-ctas">
             <CtaPrimary href="#servicos">Quero conhecer o acompanhamento</CtaPrimary>
@@ -420,7 +406,48 @@ function Sobre() {
 }
 
 function Metodo() {
-  return null;
+  const pilares = [
+    {
+      ic: Icon.chat,
+      t: 'Individualização',
+      d: 'Treino desenhado a partir da sua rotina, nível e preferências. O conteúdo é seu — do aquecimento ao último exercício.',
+    },
+    {
+      ic: Icon.check,
+      t: 'Execução antes de carga',
+      d: 'Movimento bem feito vem primeiro. Vídeo de cada exercício e correção constante para evoluir com segurança.',
+    },
+    {
+      ic: Icon.adjust,
+      t: 'Adaptação à vida real',
+      d: 'Viagem, semana puxada, equipamento limitado: o treino se reorganiza para você não parar. Faltar não vira desistir.',
+    },
+    {
+      ic: Icon.chart,
+      t: 'Acompanhamento próximo',
+      d: 'Sua evolução é monitorada de perto e o treino avança quando você está pronta — com ajustes sempre que necessário.',
+    },
+  ];
+  return (
+    <section className="section" id="metodo">
+      <div className="container">
+        <div className="section-head">
+          <Eyebrow>Método</Eyebrow>
+          <h2>Quatro princípios que sustentam todo treino que eu monto.</h2>
+        </div>
+        <div className="cards-2x2">
+          {pilares.map((p) => (
+            <article className="card" key={p.t}>
+              <span className="card-ic">{p.ic}</span>
+              <h3>{p.t}</h3>
+              <p>{p.d}</p>
+            </article>
+          ))}
+        </div>
+        <MiniDepo quote="Adoro a diversidade e adoro não ser subestimada por você." />
+      </div>
+    </section>
+  );
 }
 
 function Servicos() {
@@ -588,28 +615,28 @@ function Faq() {
   const { faqHome } = useSiteContent();
   const faqsFallback = [
     {
-      q: 'O acompanhamento é online ou presencial?',
-      a: 'Os dois! Para quem é da região de Araruama/RJ, temos a opção presencial. Para quem é de fora, a consultoria é 100% online, com o mesmo cuidado, organização e acompanhamento.',
+      q: 'Nunca treinei na vida. Consigo começar?',
+      a: 'Consegue — e começa do jeito certo: avaliação do seu nível, exercícios adaptados e execução acompanhada, presencial ou por vídeo.',
     },
     {
-      q: 'Quais são as formas de pagamento?',
-      a: 'O pagamento pode ser feito via Pix, cartão de crédito ou débito. Também trabalho com planos recorrentes e opções de assinatura para quem prefere parcelar e manter o acompanhamento contínuo.',
+      q: 'Como funciona o acompanhamento online?',
+      a: 'Você recebe o treino no aplicativo com vídeo de cada exercício, treina quando puder e me envia sua execução e dúvidas. Eu corrijo, ajusto e evoluo o seu treino.',
     },
     {
-      q: 'Preciso ter experiência na academia?',
-      a: 'Não. Eu recebo alunas que nunca treinaram e outras que já treinam há anos. O treino é montado de acordo com o seu nível, confiança e histórico. Ninguém começa do lugar errado aqui.',
+      q: 'E se eu faltar ou perder dias?',
+      a: 'O treino é organizado por sessão, não por data. Faltou? Continua de onde parou. Sem culpa, sem recomeço do zero.',
     },
     {
-      q: 'E se eu precisar viajar ou passar por uma semana corrida?',
-      a: 'A vida acontece. Quando surgir algum imprevisto, você me avisa e eu reorganizo o treino para que você continue evoluindo, sem culpa e sem perder o ritmo.',
+      q: 'Posso treinar em casa ou só na academia?',
+      a: 'O acompanhamento online funciona nos dois cenários: o treino é montado para o ambiente e o material que você tiver disponível.',
     },
     {
-      q: 'Como é feito o acompanhamento durante a semana?',
-      a: 'Você me envia os treinos executados, tira dúvidas e recebe feedbacks diretos. Seu treino não fica parado no tempo: conforme você evolui, eu vou ajustando o que for necessário.',
+      q: 'Quanto custa?',
+      a: 'Os valores dependem do formato e da frequência do acompanhamento — por isso são informados na conversa inicial, junto com tudo o que está incluído.',
     },
     {
-      q: 'Você também monta dieta?',
-      a: 'Não. Sou personal trainer e meu papel é cuidar do seu treino com excelência. Para questões nutricionais, eu indico nutricionistas de confiança que compartilham da mesma visão de saúde e equilíbrio.',
+      q: 'Como faço para começar?',
+      a: 'Simples: clica no botão abaixo, me chama no WhatsApp e a gente conversa sobre sua rotina e objetivo. De lá sai o seu plano.',
     },
   ];
   const faqs = faqHome.length > 0 ? faqHome : faqsFallback;
@@ -734,11 +761,12 @@ function Home() {
       <main>
         <Hero />
         <Valor />
-        <Resultados />
-        <Depoimentos />
         <ComoFunciona />
         <ParaQuemE />
+        <Resultados />
+        <Depoimentos />
         <Sobre />
+        <Metodo />
         <Servicos />
         <ProjetoVeraoHome />
         <Faq />
