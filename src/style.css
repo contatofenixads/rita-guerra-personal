@@ -414,7 +414,7 @@ summary:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% 24%;
+  object-position: 62% 30%;
 }
 
 .hero-bg-shade {
@@ -425,8 +425,8 @@ summary:focus-visible {
     90deg,
     rgba(250, 246, 241, 0.95) 0%,
     rgba(250, 246, 241, 0.85) 40%,
-    rgba(250, 246, 241, 0.3) 72%,
-    rgba(250, 246, 241, 0.05) 100%
+    rgba(250, 246, 241, 0.22) 72%,
+    rgba(250, 246, 241, 0.02) 100%
   );
 }
 
@@ -1657,7 +1657,7 @@ section[id] {
 
   /* hero com foto de fundo: véu vertical para legibilidade */
   .hero-bg-foto {
-    object-position: 62% 18%;
+    object-position: 65% 30%;
   }
 
   .hero-bg-shade {
