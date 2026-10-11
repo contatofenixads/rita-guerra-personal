@@ -6,6 +6,7 @@ import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
 import heroImg from './assets/rita-hero-horizontal.jpg';
+import heroImgMobile from './assets/rita-hero-escada.jpg';
 import ritaSobre from './assets/rita-sobre.jpg';
 import resultado1 from './assets/resultados/resultado-01.png';
 import resultado2 from './assets/resultados/resultado-02.jpg';
@@ -77,6 +78,12 @@ function Hero() {
         src={heroImg}
         alt="Rita Guerra, personal trainer, sentada em escadaria"
         fetchPriority="high"
+      />
+      <img
+        className="hero-bg-foto hero-bg-foto--mobile"
+        src={heroImgMobile}
+        alt=""
+        aria-hidden="true"
       />
       <div className="hero-bg-shade" aria-hidden="true" />
       {config['verao.destaqueHome'] !== 'off' && (
