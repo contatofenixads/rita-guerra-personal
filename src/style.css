@@ -807,13 +807,13 @@ summary:focus-visible {
   margin-top: 18px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--texto-suave);
+  color: var(--cafe);
 }
 
 .dep-note {
   margin-top: 18px;
   font-size: 0.82rem;
-  color: var(--texto-suave);
+  color: var(--cafe-suave);
 }
 
 /* ---------- sobre ---------- */
@@ -2675,7 +2675,7 @@ section[id] {
   }
 
   .pv-hero-bg {
-    object-position: 73% 30%;
+    object-position: 70% 12%;
   }
 
   .pv-hero-inner {

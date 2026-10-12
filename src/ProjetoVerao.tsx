@@ -535,8 +535,6 @@ function PvFaq() {
     {
       q: 'Como vou receber o material?',
       a: 'Assim que sua compra for confirmada, você recebe acesso ao material digital em PDF, com os treinos, orientações e tudo o que precisa para começar. É só salvar no celular e levar com você para a academia!',
-      nota:
-        'Atenção interna: resposta ainda pendente de validação — a entrega via plataforma Greenn não está configurada nem validada. Não publicar como definitivo.',
     },
     {
       q: 'Para quem o Projeto Verão não é indicado?',
