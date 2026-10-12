@@ -2885,6 +2885,15 @@ section[id] {
   opacity: 0.85;
 }
 
+/* desktop: cards confinados à zona do gradiente (esquerda) para não
+   cobrirem a Rita na faixa da fotografia — ela aparece do rosto aos pés */
+@media (min-width: 901px) {
+  .verao-banner-beneficios {
+    max-width: 47%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ---------- painel de oferta ---------- */
 
 .verao-banner-panel {
