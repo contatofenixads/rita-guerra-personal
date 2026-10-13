@@ -668,6 +668,16 @@ function Footer({ salesMode = false }: { salesMode?: boolean }) {
       </div>
       <div className="container footer-base">
         <span>© {new Date().getFullYear()} Rita Guerra · Personal Trainer</span>
+        <span className="footer-credit">
+          Desenvolvido por{' '}
+          <a
+            href="https://agenciafenixads.lovable.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Agência FENIX ads
+          </a>
+        </span>
         <span>Presencial e online</span>
       </div>
     </footer>
