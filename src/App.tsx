@@ -5,6 +5,7 @@ import ProjetoVerao from './ProjetoVerao';
 import { useSiteContent } from './content';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
+import { AgencyFooter } from './AgencyFooter';
 import heroImg from './assets/rita-hero-horizontal.jpg';
 import heroImgMobile from './assets/rita-hero-escada.jpg';
 import ritaSobre from './assets/rita-sobre.jpg';
@@ -680,6 +681,7 @@ function Footer({ salesMode = false }: { salesMode?: boolean }) {
         </span>
         <span>Presencial e online</span>
       </div>
+      <AgencyFooter />
     </footer>
   );
 }

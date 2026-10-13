@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/projetoverao.tsx","./src/config.ts","./src/content.ts","./src/db.ts","./src/main.tsx","./src/ui.tsx","./src/vite-env.d.ts"],"version":"5.9.3"}
+{"root":["./src/agencyfooter.tsx","./src/app.tsx","./src/projetoverao.tsx","./src/config.ts","./src/content.ts","./src/db.ts","./src/main.tsx","./src/ui.tsx","./src/vite-env.d.ts"],"version":"5.9.3"}
