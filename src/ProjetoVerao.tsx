@@ -23,9 +23,9 @@ const PV_NAV = [
 
 const pvLink = (anchor: string) => hrefTo('projeto-verao', anchor);
 
-/* destino do CTA de compra: checkout oficial → WhatsApp → contato */
+/* destino do CTA de compra: checkout oficial → WhatsApp de dúvida */
 const WHATS_MSG = whatsappNumber
-  ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Oi, Rita! Quero meu PROJETO VERÃO.')}`
+  ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Olá, Rita! Gostaria de tirar uma dúvida sobre o Projeto Verão.')}`
   : '';
 
 function PvBtn({ children }: { children: React.ReactNode }) {

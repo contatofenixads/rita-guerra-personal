@@ -8,17 +8,17 @@
  *  - cref: só preencher com o número real. Enquanto vazio, a linha de
  *    credenciais não exibe o CREF (nada é inventado).
  */
-export const whatsappNumber = '';
+export const whatsappNumber = '5519992704422';
 
 export const WHATSAPP_URL = whatsappNumber
   ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      'Oi, Rita! Vim pelo site e quero saber mais sobre o acompanhamento.',
+      'Olá, Rita! Conheci seu site e gostaria de saber mais sobre seus serviços.',
     )}`
   : '#contato';
 
 export const WHATSAPP_URL_VERAO = whatsappNumber
   ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      'Oi, Rita! Vim pelo site e quero saber mais sobre o PROJETO VERÃO.',
+      'Olá, Rita! Gostaria de tirar uma dúvida sobre o Projeto Verão.',
     )}`
   : '#verao-investimento';
 
@@ -48,7 +48,7 @@ export const VERAO = {
   ],
   bonus: [] as string[],
   garantia: '',
-  linkCompra: '',
+  linkCompra: 'https://payfast.greenn.com.br/v36et75',
 };
 
 export const SEO = {
