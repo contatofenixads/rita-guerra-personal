@@ -48,7 +48,7 @@ export const VERAO = {
   ],
   bonus: [] as string[],
   garantia: '',
-  linkCompra: 'https://payfast.greenn.com.br/v36et75',
+  linkCompra: 'https://payfast.greenn.com.br/197999?ch_id=144428',
 };
 
 export const SEO = {
