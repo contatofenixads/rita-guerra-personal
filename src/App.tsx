@@ -669,9 +669,9 @@ function Footer({ salesMode = false }: { salesMode?: boolean }) {
       </div>
       <div className="container footer-base">
         <span>© {new Date().getFullYear()} Rita Guerra · Personal Trainer</span>
+        <AgencyFooter />
         <span>Presencial e online</span>
       </div>
-      <AgencyFooter />
     </footer>
   );
 }
