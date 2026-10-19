@@ -1586,18 +1586,6 @@ summary:focus-visible {
   text-align: right;
 }
 
-.footer-credit a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: opacity 0.2s;
-}
-
-.footer-credit a:hover,
-.footer-credit a:focus {
-  opacity: 0.8;
-}
-
 @media (max-width: 640px) {
   .footer-base {
     flex-direction: column;
