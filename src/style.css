@@ -1587,9 +1587,11 @@ summary:focus-visible {
 }
 
 #agencia-footer {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  min-width: max-content;
+  width: 100%;
 }
 
 @media (max-width: 640px) {
