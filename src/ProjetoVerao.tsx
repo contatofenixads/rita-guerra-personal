@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { VERAO, INSTAGRAM_URL, whatsappNumber } from './config';
 import { hrefTo } from './ui';
 import { useSiteContent } from './content';
+import { fbqSafe, usePixelViewContent } from './pixel';
 import logoHeader from './assets/logo-header.png';
 import logoFooter from './assets/logo-footer.png';
 import pvHeroPraia from './assets/pv-hero-praia.jpg';
@@ -32,8 +33,17 @@ function PvBtn({ children }: { children: React.ReactNode }) {
   const { config } = useSiteContent();
   const href =
     config['verao.linkCompra'] || VERAO.linkCompra || WHATS_MSG || hrefTo('', 'contato');
+  const onClick = () => {
+    fbqSafe('track', 'InitiateCheckout', {
+      content_ids: ['projeto-verao'],
+      content_name: 'Projeto Verão',
+      content_type: 'product',
+      currency: 'BRL',
+      value: 47.0,
+    });
+  };
   return (
-    <a className="pv-btn" href={href}>
+    <a className="pv-btn" href={href} onClick={onClick}>
       {children} <span aria-hidden="true">→</span>
     </a>
   );
@@ -598,6 +608,14 @@ function PvFinal() {
 /* ---------- página ---------- */
 
 export default function ProjetoVerao() {
+  usePixelViewContent({
+    content_ids: ['projeto-verao'],
+    content_name: 'Projeto Verão',
+    content_type: 'product',
+    currency: 'BRL',
+    value: 47.0,
+  });
+
   return (
     <div className="pv-page">
       <PvHeader />
