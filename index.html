@@ -32,11 +32,12 @@
         t = b.createElement(e);
         t.async = !0;
         t.src = v;
+        t.onerror = function () {
+          console.warn('[Meta Pixel] falha ao carregar fbevents.js');
+        };
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
       })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1105772998891868');
-      fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
   </head>
